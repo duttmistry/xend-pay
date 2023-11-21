@@ -1,17 +1,17 @@
 // @import '~node_modules/@nebular/theme/styles/theming';
 // @import '~@nebular/theme/styles/themes/default';
 @import "~@ng-select/ng-select/themes/default.theme.css";
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css";
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900;1&display=swap');
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
+// @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Source+Sans+3:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900;1&display=swap');
+// @import "primeng/resources/themes/lara-light-blue/theme.css";
+// @import "primeng/resources/primeng.css";
 .error-message {
   color: red;
   font-family: "Source Sans 3", sans-serif;
 }
-.nb-theme-default nb-layout-header~.layout-container {
+.nb-theme-default nb-layout-header ~ .layout-container {
   min-height: calc(100vh - 6.75rem) !important;
 }
 body {
@@ -96,7 +96,6 @@ body {
                       font-weight: 400;
                       color: #101828;
                       font-family: "Lato", sans-serif !important;
-
                     }
                     // @media only screen and (max-width: 567px) {
                     //   padding: 0;
@@ -230,7 +229,7 @@ body {
     .main-data-title {
       .main-data-heading {
         .main-title {
-          font-family: "Source Sans 3", sans-serif !important; 
+          font-family: "Source Sans 3", sans-serif !important;
         }
       }
     }
@@ -244,7 +243,7 @@ body {
         .main-data-title-only {
           @media only screen and (max-width: 767px) {
             width: 100% !important;
-          } 
+          }
         }
       }
     }
@@ -833,27 +832,84 @@ nb-checkbox .label .custom-checkbox:after {
   color: #667085 !important;
   margin: 0 !important;
 }
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items {
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items {
   padding: 16px;
 }
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option {
   cursor: pointer;
 }
-.account-holder-container .account-detail-form.account-holder-detail .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+.account-holder-container
+  .account-detail-form.account-holder-detail
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option {
   padding: 0 !important;
 }
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option > div {
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option
+  > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked,
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover {
-  background-color: #E6F4FF !important;
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected,
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected.ng-option-marked,
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option:hover {
+  background-color: #e6f4ff !important;
 }
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option label {
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option
+  label {
   margin-bottom: 0 !important;
   font-size: 16px !important;
   line-height: 19.2px !important;
@@ -864,7 +920,15 @@ nb-checkbox .label .custom-checkbox:after {
   cursor: pointer;
   padding: 14px 24px !important;
 }
-.account-holder-container .account-detail-form .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option input {
+.account-holder-container
+  .account-detail-form
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option
+  input {
   width: 16px !important;
   height: 16px;
   padding: 14px 24px !important;
@@ -872,15 +936,29 @@ nb-checkbox .label .custom-checkbox:after {
 .ng-dropdown-panel .scroll-host {
   padding: 0px 16px 16px;
 }
-.account-holder-container .account-detail-form.account-holder-detail.account-holder_form-wrapper .account-content .input-row ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+.account-holder-container
+  .account-detail-form.account-holder-detail.account-holder_form-wrapper
+  .account-content
+  .input-row
+  ng-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option {
   padding: 12px 24px !important;
 }
-.account-holder-container .account-detail-form.account-holder-detail.account-holder_form-wrapper .account-content .input-row ng-select.account-holder-details-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+.account-holder-container
+  .account-detail-form.account-holder-detail.account-holder_form-wrapper
+  .account-content
+  .input-row
+  ng-select.account-holder-details-select
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option {
   padding: 0 !important;
 }
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
   background-color: transparent !important;
-} 
+}
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
   color: #000000 !important;
   margin-bottom: 8px;
@@ -1002,7 +1080,11 @@ nb-checkbox .label .custom-checkbox:after {
   // .content-right .section .card-detail-main {
   //   min-width: 90%;
   // }
-  .workflow-wrapper .content-right .workflow-main-heading .main-data-heading .main-title {
+  .workflow-wrapper
+    .content-right
+    .workflow-main-heading
+    .main-data-heading
+    .main-title {
     font-size: 30px !important;
     line-height: 38px !important;
     margin-bottom: 24px !important;
@@ -1014,10 +1096,9 @@ nb-checkbox .label .custom-checkbox:after {
 //   color: #0090FF !important;
 // }
 
-
 .nb-theme-default nb-option-list {
   border-radius: 10px !important;
-  border-color: #D0D5DD !important;
+  border-color: #d0d5dd !important;
 }
 .nb-theme-default nb-option-list .option-list {
   padding: 16px !important;
@@ -1045,14 +1126,18 @@ nb-checkbox .label .custom-checkbox:after {
 }
 .nb-theme-default nb-option:hover,
 .nb-theme-default nb-option:focus {
-  background-color: #E6F4FF !important;
+  background-color: #e6f4ff !important;
   border-radius: 10px;
 }
 .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
   padding: 0 !important;
   top: 0;
 }
-.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input input {
+.ng-select.ng-select-single
+  .ng-select-container
+  .ng-value-container
+  .ng-input
+  input {
   border: 0 !important;
   padding: 14px 24px !important;
 }
@@ -1080,15 +1165,15 @@ nb-checkbox .label .custom-checkbox:after {
         .custom-checkbox {
           width: 20px !important;
           height: 20px !important;
-          border: 1px solid #B5B5B5 !important;
+          border: 1px solid #b5b5b5 !important;
           border-radius: 6px !important;
           background-color: transparent !important;
           &.checked {
-            border-color: #0333D2 !important;
-            background-color: #ECF0F5 !important;
+            border-color: #0333d2 !important;
+            background-color: #ecf0f5 !important;
           }
           &::after {
-            border-color: #0333D2;
+            border-color: #0333d2;
             border-width: 0 2px 2px 0;
             width: 5px;
             height: 10px;
@@ -1108,12 +1193,15 @@ nb-checkbox .label .custom-checkbox:after {
   }
 }
 
-.create-account-content.business-account nb-checkbox.status-basic .native-input:enabled:focus + .custom-checkbox {
-  background-color: #ECF0F5 !important;
+.create-account-content.business-account
+  nb-checkbox.status-basic
+  .native-input:enabled:focus
+  + .custom-checkbox {
+  background-color: #ecf0f5 !important;
 }
 
 .address-proof nb-progress-bar.status-primary .progress-container {
-  background-color: #D9D9D9 !important;
+  background-color: #d9d9d9 !important;
   border-radius: 48px !important;
 }
 .address-proof nb-progress-bar.status-primary .progress-value {
@@ -1138,10 +1226,10 @@ nb-checkbox .label .custom-checkbox:after {
       margin: 40px 0 0;
       font-family: "Lato", sans-serif !important;
       span {
-        color: #0090FF;
+        color: #0090ff;
         cursor: pointer;
       }
-    } 
+    }
   }
 }
 
@@ -1160,12 +1248,12 @@ nb-checkbox .label .custom-checkbox:after {
         }
       }
       .text-subtitle {
-          width: 327px;
-          margin: 0 auto;
-          display: block;
-          @media only screen and (max-width: 767px) {
-              width: 100%;
-          }
+        width: 327px;
+        margin: 0 auto;
+        display: block;
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -1178,26 +1266,31 @@ nb-checkbox .label .custom-checkbox:after {
   color: #667085;
   display: inline-block;
   a {
-    color: #0090FF !important;
+    color: #0090ff !important;
     text-decoration: none !important;
     display: inline-block;
   }
-} 
+}
 
 .nb-theme-default nb-option.selected {
-  background-color: #E6F4FF !important;
+  background-color: #e6f4ff !important;
   color: #101828 !important;
   border-radius: 10px;
 }
-.nb-theme-default nb-select.appearance-outline.status-basic .select-button:focus {
+.nb-theme-default
+  nb-select.appearance-outline.status-basic
+  .select-button:focus {
   border-color: #d0d5dd !important;
 }
 
 .nb-theme-default .cdk-overlay-container .overlay-backdrop {
-  background: rgba(0,0,0,.40);
+  background: rgba(0, 0, 0, 0.4);
 }
 @media only screen and (max-width: 567px) {
-  .nb-theme-default .cdk-overlay-container .cdk-global-overlay-wrapper .cdk-overlay-pane {
+  .nb-theme-default
+    .cdk-overlay-container
+    .cdk-global-overlay-wrapper
+    .cdk-overlay-pane {
     width: 90%;
     margin: 0 auto;
     display: block;
@@ -1206,9 +1299,9 @@ nb-checkbox .label .custom-checkbox:after {
 
 .dialog-card {
   width: 435px;
-  height: auto ;
+  height: auto;
   padding: 16px 24px;
-  background-color: #F9FAFB !important;
+  background-color: #f9fafb !important;
   border-radius: 10px !important;
   margin-bottom: 0;
   @media only screen and (max-width: 567px) {
@@ -1233,7 +1326,7 @@ nb-checkbox .label .custom-checkbox:after {
       font-weight: 500;
       color: #667085;
       margin: 0;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
     }
   }
   .dialog-card-buttons {
@@ -1246,10 +1339,10 @@ nb-checkbox .label .custom-checkbox:after {
       font-weight: 700;
       padding: 8px;
       border-radius: 10px !important;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
       width: 100%;
-      background-color: #0090FF !important;
-      color: #FFFFFF !important;
+      background-color: #0090ff !important;
+      color: #ffffff !important;
       border: 0 !important;
       text-transform: capitalize !important;
     }
@@ -1257,13 +1350,13 @@ nb-checkbox .label .custom-checkbox:after {
       font-size: 12px !important;
       line-height: 24px !important;
       font-weight: 700;
-      color: #0090FF !important;
+      color: #0090ff !important;
       background-color: #fff !important;
-      border: 2px solid #0090FF !important;
+      border: 2px solid #0090ff !important;
       padding: 6px 8px !important;
       border-radius: 10px !important;
       width: 100%;
-      font-family: 'Lato', sans-serif;
+      font-family: "Lato", sans-serif;
       text-transform: capitalize !important;
     }
   }
@@ -1273,18 +1366,31 @@ nb-checkbox .label .custom-checkbox:after {
   padding: 12px 24px !important;
   border-radius: 10px !important;
 }
-.ng-select.ng-select-multiple.moneycountrySelect .ng-select-container .ng-value-container,
-.ng-select.ng-select-multiple.moneycountrySelect .ng-select-container .ng-value-container .ng-input {
+.ng-select.ng-select-multiple.moneycountrySelect
+  .ng-select-container
+  .ng-value-container,
+.ng-select.ng-select-multiple.moneycountrySelect
+  .ng-select-container
+  .ng-value-container
+  .ng-input {
   padding: 0;
 }
-.ng-select.ng-select-multiple.moneycountrySelect .ng-select-container .ng-value-container .ng-input input {
+.ng-select.ng-select-multiple.moneycountrySelect
+  .ng-select-container
+  .ng-value-container
+  .ng-input
+  input {
   padding: 0 !important;
 }
-.ng-select.ng-select-multiple.moneycountrySelect .ng-select-container .ng-arrow-wrapper {
+.ng-select.ng-select-multiple.moneycountrySelect
+  .ng-select-container
+  .ng-arrow-wrapper {
   padding-right: 0;
   margin-right: -15px;
 }
-.ng-select.ng-select-multiple.moneycountrySelect .ng-select-container.ng-has-value .ng-arrow-wrapper {
+.ng-select.ng-select-multiple.moneycountrySelect
+  .ng-select-container.ng-has-value
+  .ng-arrow-wrapper {
   margin-right: 0;
 }
 .moneycountrySelect .ng-dropdown-panel .ng-dropdown-panel-items {
@@ -1293,12 +1399,25 @@ nb-checkbox .label .custom-checkbox:after {
 .moneycountrySelect .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
   padding: 14px 24px !important;
 }
-.moneycountrySelect .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover,
-.moneycountrySelect .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected,
-.moneycountrySelect .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
-  background-color: #E6F4FF !important;
+.moneycountrySelect
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option:hover,
+.moneycountrySelect
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected,
+.moneycountrySelect
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option.ng-option-selected.ng-option-marked {
+  background-color: #e6f4ff !important;
 }
-.moneycountrySelect .ng-dropdown-panel .ng-dropdown-panel-items .ng-option > div {
+.moneycountrySelect
+  .ng-dropdown-panel
+  .ng-dropdown-panel-items
+  .ng-option
+  > div {
   display: flex;
   justify-content: space-between;
 }
@@ -1315,7 +1434,7 @@ nb-checkbox .label .custom-checkbox:after {
   line-height: 19.2px;
   font-weight: 400;
   color: #101828;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 .moneycountrySelect .ng-option-label input {
   position: absolute;
@@ -1337,12 +1456,12 @@ nb-checkbox .label .custom-checkbox:after {
   width: 16px;
   border-radius: 4px;
   background-color: transparent;
-  border: 1px solid #D0D5DD;
+  border: 1px solid #d0d5dd;
 }
 
 .moneycountrySelect .ng-option-label input:checked ~ .checkmark {
-  background-color: #ECF0F5;
-  border-color: #0090FF;
+  background-color: #ecf0f5;
+  border-color: #0090ff;
 }
 
 .moneycountrySelect .checkmark:after {
@@ -1360,7 +1479,7 @@ nb-checkbox .label .custom-checkbox:after {
   top: 1px;
   width: 5px;
   height: 9px;
-  border: solid #0090FF;
+  border: solid #0090ff;
   border-width: 0 1.5px 1.5px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -1372,9 +1491,12 @@ nb-checkbox .label .custom-checkbox:after {
 .moneycountrySelect .ng-select-container.ng-has-value .ng-value-container {
   gap: 8px;
 }
-.moneycountrySelect .ng-select-container.ng-has-value .ng-value-container .ng-value {
+.moneycountrySelect
+  .ng-select-container.ng-has-value
+  .ng-value-container
+  .ng-value {
   padding: 8px 10px;
-  background-color: #E6F4FF;
+  background-color: #e6f4ff;
   border-radius: 10px;
   margin-right: 0;
   margin-bottom: 0;
@@ -1387,27 +1509,45 @@ nb-checkbox .label .custom-checkbox:after {
     min-width: 45%;
   }
 }
-.moneycountrySelect .ng-select-container.ng-has-value .ng-value-container .ng-value .ng-value-label {
+.moneycountrySelect
+  .ng-select-container.ng-has-value
+  .ng-value-container
+  .ng-value
+  .ng-value-label {
   padding: 0;
   font-size: 16px;
   line-height: 19.2px;
   font-weight: 400;
   color: #000000;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   display: flex;
   align-items: center;
 }
-.moneycountrySelect .ng-select-container.ng-has-value .ng-value-container .ng-value .ng-value-label .flag-icon {
+.moneycountrySelect
+  .ng-select-container.ng-has-value
+  .ng-value-container
+  .ng-value
+  .ng-value-label
+  .flag-icon {
   width: 24px;
   height: 16px;
   background-size: cover;
   margin-right: 10px;
 }
-.moneycountrySelect .ng-select-container.ng-has-value .ng-value-container .ng-value nb-icon {
+.moneycountrySelect
+  .ng-select-container.ng-has-value
+  .ng-value-container
+  .ng-value
+  nb-icon {
   padding: 0 !important;
   width: auto !important;
 }
-.moneycountrySelect .ng-select-container.ng-has-value .ng-value-container .ng-value nb-icon svg {
+.moneycountrySelect
+  .ng-select-container.ng-has-value
+  .ng-value-container
+  .ng-value
+  nb-icon
+  svg {
   width: 20px;
   height: 20px;
 }
