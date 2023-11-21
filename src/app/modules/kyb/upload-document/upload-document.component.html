@@ -1,0 +1,102 @@
+<div class="main-container address-proof" *ngIf="dataArr.length > 0">
+  <app-title-header
+    title="Document upload"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="/additional-information/supporting-documents"
+  ></app-title-header>
+  <div class="card-wrapper">
+    <div class="card card-customized" *ngFor="let data of dataArr">
+      <div class="card-body-container">
+        <div class="card-body-wrapper">
+          <div class="card-body-image">
+            <div class="add-icon" style="font-size: 28px; color: #0f172a">
+              &#x2b;
+            </div>
+          </div>
+          <div class="card-body-details">
+            <h6>{{ data.heading }}</h6>
+            <span>{{ data.description }}</span>
+          </div>
+        </div>
+        <div style="display: flex;">
+
+          <label
+            [for]="data.id"
+            class="uploadDocLabel"
+            [ngStyle]="{
+              cursor: data.status == 'Uploaded' ? 'default' : 'pointer'
+            }"
+          >
+            {{ data.status }}
+            <nb-icon
+              *ngIf="data.status == 'Uploaded'"
+              [icon]="data.icon"
+              [status]="data.color"
+            ></nb-icon>
+            <nb-progress-bar
+              [value]="data.progressbar"
+              *ngIf="data.status === 'Uploading'"
+              status="primary"
+              size="tiny"
+              style="width: 70px"
+            ></nb-progress-bar>
+            <span *ngIf="data.status === 'Upload failed.'" style="color: #E72929; padding-left: 10px;">Try again</span>
+          </label>
+          <img
+          *ngIf="data.status === 'Upload failed.'"
+          src="/assets/images/icons/error-cross-icon.png"
+          alt="error-icon"
+          style="padding-left: 20px;"
+        />
+          <img
+          *ngIf="data.status === 'Uploaded'"
+          src="/assets/images/icons/delete-icon.png"
+          alt="delete-icon"
+          (click)="_removeSelectedFile(data.id)"
+          style="cursor: pointer;padding-left: 20px;"
+        />
+          <input
+            type="file"
+            hidden
+            [id]="data.id"
+            (change)="_OnfileUploadChange($event, data.id)"
+          />
+        </div>
+        <!-- <label
+          class="uploadDocLabel"
+          (click)="_previewFile()"
+          *ngIf="data?.file"
+          class="cursor-pointer"
+          >{{ data.fileName }}</label
+        >
+        <nb-icon
+          icon="close"
+          *ngIf="data.file"
+          (click)="_removeSelectedFile(data.id)"
+          class="cursor-pointer"
+        ></nb-icon> -->
+      </div>
+      <!-- <div *ngIf="data.error" class="errorMessage">{{ data.error }}</div> -->
+    </div>
+  </div>
+  <div class="Upload-details">
+    <label>Not sure what to upload?<a>Please visit our FAQs</a> </label>
+  </div>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        [disabled]="!isAllUploaded"
+        (click)="_onSubmit()"
+      >
+        Upload
+      </button>
+    </div>
+  </div>
+</div>

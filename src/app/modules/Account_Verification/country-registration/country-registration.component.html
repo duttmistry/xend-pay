@@ -1,0 +1,216 @@
+<div class="main-container">
+  <app-title-header
+    title="Country of registration"
+    subTitle="Select the country where your business is registered"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/account-verification"
+  ></app-title-header>
+  <!-- path="/account-verification/" -->
+  <div class="form-control">
+    <div class="form-detail">
+      <span class="form-control-label">Company Location</span>
+      <!-- <nb-form-field [formGroup]="countryForm">
+      <nb-icon
+        nbPrefix
+        icon="at-outline"
+        [class]="flag_Icon"
+        pack="eva"
+        style="margin-bottom: 20px"
+      ></nb-icon>
+      <input
+        #autoInput
+        nbInput
+        type="text"
+        (input)="onChange()"
+        placeholder="Enter value"
+        [nbAutocomplete]="auto"
+        [ngStyle]="{
+          width: '400px',
+          'margin-bottom':
+            countryForm.get('countryLocation')?.hasError('required') &&
+            (countryForm.get('countryLocation')?.touched ||
+              countryForm.get('countryLocation')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+        status="{{
+          countryForm.get('countryLocation')?.hasError('required') &&
+          (countryForm.get('countryLocation')?.touched ||
+            countryForm.get('countryLocation')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        formControlName="countryLocation"
+        style="vertical-align: text-bottom;"
+      />
+      <div
+        *ngIf="
+          countryForm.get('countryLocation')?.hasError('required') &&
+          countryForm.get('countryLocation')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 16px"
+      >
+        Country location is required.
+      </div>
+    </nb-form-field>
+    <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+      <nb-option
+      *ngFor="let option of filteredOptions$ | async"
+      [value]="option.country"
+      >
+      <span [innerHtml]="getOptionHtml(option)"></span>
+      
+      </nb-option>
+    </nb-autocomplete> -->
+      <form [formGroup]="countryForm">
+        <!-- <ng-select
+        #select
+        [items]="country_options"
+        [searchable]="false"
+        formControlName="countryLocation"
+        bindLabel="country"
+        bindValue="country"
+        [ngStyle]="{
+          'margin-bottom':
+            countryForm.get('countryLocation')?.hasError('required') &&
+            (countryForm.get('countryLocation')?.touched ||
+              countryForm.get('countryLocation')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div>
+            <img
+              src="/assets/images/icons/search.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="select.filter(input.value)"
+              #input
+              placeholder="Search country"
+            />
+          </div>
+          <span style="margin-top: 10px">Frequent Countries</span>
+          <span style="margin-top: 10px">Frequent Countries</span>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="margin-right: 16px; width: 24px; height: 16px; background-size: cover;"
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+        <ng-template ng-optgroup-tmp let-item="item">
+        {{item.country || 'Unnamed group'}}
+    </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="margin-right: 10px"
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+      </ng-select> -->
+        <ng-select
+          #select
+          [items]="country_options"
+          [searchable]="false"
+          [clearable]="false"
+          formControlName="countryLocation"
+          bindLabel="country"
+          bindValue="country"
+          groupBy="country_type"
+          [ngStyle]="{
+            'margin-bottom':
+              countryForm.get('countryLocation')?.hasError('required') &&
+              (countryForm.get('countryLocation')?.touched ||
+                countryForm.get('countryLocation')?.dirty)
+                ? '0px'
+                : '20px'
+          }"
+        >
+          <ng-template ng-header-tmp>
+            <div class="search-field">
+              <img
+                src="/assets/images/icons/search-icon.png"
+                alt=""
+                class="serach-img"
+              />
+              <input
+                class="search-input"
+                type="text"
+                (input)="select.filter(input.value)"
+                #input
+                placeholder="Search"
+                style="width: 100%; line-height: 24px"
+              />
+            </div>
+          </ng-template>
+          <ng-template ng-label-tmp let-item="item">
+            <span
+              class="flag-icon {{ item.flag }}"
+              style="
+                margin-right: 16px;
+                width: 24px;
+                height: 16px;
+                background-size: cover;
+              "
+            ></span>
+            <span>{{ item.country }}</span>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+            {{ item.country_type }}
+          </ng-template>
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-index="index"
+            let-search="searchTerm"
+          >
+            <span
+              class="flag-icon {{ item.flag }}"
+              style="
+                margin-right: 16px;
+                width: 24px;
+                height: 16px;
+                background-size: cover;
+              "
+            ></span>
+            <span>{{ item.country }}</span>
+          </ng-template>
+        </ng-select>
+      </form>
+
+      <div
+        *ngIf="
+          countryForm.get('countryLocation')?.hasError('required') &&
+          countryForm.get('countryLocation')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 20px"
+      >
+        Country location is required.
+      </div>
+      <button
+        nbButton
+        status="primary"
+        (click)="selectCountry()"
+        class="btn-next"
+        [disabled]="!countryForm.valid"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

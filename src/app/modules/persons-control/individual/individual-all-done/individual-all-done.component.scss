@@ -1,0 +1,45 @@
+.all-done-container{
+  width: 536px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:auto auto;
+  margin-top: 150px;
+  @media only screen and (max-width: 767px) {
+      width: 100%;
+      margin-top: 100px;
+  }
+
+  .all-done-icon {
+      width: 190px;
+      height: 190px;
+      color: #416A95; 
+      @media only screen and (max-width: 767px) {
+          width: 120px;
+          height: 120px;
+      }   
+  }
+  .all-done-text{
+      font-family: "Source Sans 3", sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      line-height: 47.77px;
+      margin: 0 0 18px 0;
+      color: #101828;
+  }
+  .all-done-description{
+      width: 332px;
+      margin: 0 auto;
+      display: block;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20.11px;
+      text-align: center;
+      font-family: "Source Sans 3", sans-serif;
+      color: #667085;
+      @media only screen and (max-width: 767px) {
+          width: 100%;
+      }
+  }
+}

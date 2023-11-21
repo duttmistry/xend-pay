@@ -1,0 +1,27 @@
+.selected-option {
+  display: flex;
+  align-items: center;
+}
+
+.selected-option i {
+  margin-left: 8px; /* Adjust the spacing between the text and the icon as needed */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+span {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.create-account-number .option-list nb-option {
+  padding: 0 !important;
+}

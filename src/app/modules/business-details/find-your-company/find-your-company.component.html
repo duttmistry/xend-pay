@@ -1,0 +1,173 @@
+<div class="main-container">
+  <app-title-header
+    title="Find your company"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/"
+  ></app-title-header>
+  <div class="findcountry-detail">
+    <form class="findcountry-form" [formGroup]="countryForm">
+      <ng-select
+        #select
+        [items]="country_options"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="countryLocation"
+        bindLabel="country"
+        bindValue="country"
+        groupBy="country_type"
+        (change)="changeCountry()"
+        [ngStyle]="{
+          '':
+            countryForm.get('countryLocation')?.hasError('required') &&
+            (countryForm.get('countryLocation')?.touched ||
+              countryForm.get('countryLocation')?.dirty)
+              ? '0px'
+              : ''
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="select.filter(input.value)"
+              #input
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+        <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+          {{ item.country_type }}
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          countryForm.get('countryLocation')?.hasError('required') &&
+          countryForm.get('countryLocation')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 20px"
+      >
+        Country location is required.
+      </div>
+      <div class="search-field">
+        <div class="search-field-details">
+          <img
+            src="/assets/images/icons/search-icon.png"
+            alt=""
+            class="serach-img"
+          />
+          <input
+            class="search-input"
+            type="text"
+            #input
+            formControlName="search"
+            placeholder="Search company name or number"
+            style="width: 100%; line-height: 24px"
+          />
+        </div>
+        <button class="enter-button" (click)="filterCompany(input.value)">
+          Enter
+        </button>
+      </div>
+    </form>
+    <div
+      class="company-form-content"
+      *ngIf="findCompanyFilteredArr.length > 0; else noCompanyData"
+    >
+      <form [formGroup]="findCompanyForm">
+        <ng-container>
+          <div *ngFor="let company of findCompanyFilteredArr">
+            <div class="card">
+              <input
+                id="{{ company?.id }}"
+                type="radio"
+                class="custom-control-input"
+                value="{{ company?.id }}"
+                name="selected_company"
+                formControlName="selected_company"
+              />
+              <label for="{{ company?.id }}">
+                <div class="company-data">
+                  <div class="find-company-details">
+                    <span class="find-company-name">{{ company?.title }}</span>
+                    <span class="find-company-text">{{
+                      company?.address
+                    }}</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </ng-container>
+      </form>
+    </div>
+    <ng-template #noCompanyData>
+      <div class="no-company-data" *ngIf="cantFindResult">
+        Can’t find any company results
+      </div>
+    </ng-template>
+    <div>
+      <button
+        nbButton
+        status="primary"
+        (click)="save_Company()"
+        class="btn-next"
+        [disabled]="
+          !findCompanyForm.valid || findCompanyFilteredArr.length == 0
+        "
+      >
+        Next
+      </button>
+      <button
+        nbButton
+        status="primary"
+        (click)="enter_Manual_Company()"
+        class="btn-next manual-btn"
+      >
+        <!-- [ngStyle]="{
+          cursor: findCompanyForm.valid ? 'not-allowed' : 'pointer'
+        }" -->
+        <!-- [disabled]="!findCompanyForm.valid" -->
+        Enter details manually
+      </button>
+    </div>
+  </div>
+</div>

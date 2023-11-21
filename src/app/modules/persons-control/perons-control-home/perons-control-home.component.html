@@ -1,0 +1,73 @@
+<div class="main-container persons-control-container">
+  <app-title-header
+    title="Persons of Control"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+  ></app-title-header>
+  <div class="card-wrapper">
+    <div class="card card-customized">
+      <div class="card-body-container">
+        <div class="card-body-image">
+          <img
+            src="{{ '/assets/images/icons/person.png' }}"
+            alt=""
+            style="width: auto; height: 20px"
+          />
+        </div>
+        <div class="card-body-details">
+          <h5>Account Holder's Identity</h5>
+          <span>You are the person that created this account</span>
+        </div>
+      </div>
+    </div>
+    <div class="card card-customized">
+      <div class="card-body-container">
+        <div class="card-body-image">
+          <img
+            src="{{ '/assets/images/icons/people.png' }}"
+            alt=""
+            style="width: auto; height: 20px"
+          />
+        </div>
+        <div class="card-body-details">
+          <h5>Director's & Shareholders</h5>
+          <span>Verify directors and shareholders identities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-customized">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="
+        display: grid;
+        width: 100%;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        color: #fff;
+      "
+      (click)="_onSubmit()"
+    >
+      Next
+    </button>
+  </div>
+  <!-- <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        (click)="_onSubmit()"
+      >
+        Next
+      </button>
+    </div>
+  </div> -->
+</div>

@@ -1,0 +1,94 @@
+<div class="main-container persons-control-container">
+  <app-title-header
+    title="Confirm Shareholders"
+    subTitle="Please ensure all shareholders and their individual informations are correct"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="/persons-of-control/confirm-directors"
+  ></app-title-header>
+  <div class="confirm-shareholders confirm-proprietary">
+    <div class="confirm-shareholders-card confirm-proprietary-card">
+      <nb-card *ngIf="isAutoFlow">
+        <nb-card-body>
+          <div
+            class="card-content confirm-shareholders-card"
+            (click)="_onAddUser()"
+            style="cursor: pointer"
+          >
+            <div class="add-container">
+              <div class="add-icon">&#x2b;</div>
+            </div>
+            <div class="confirm-shareholders-details">
+              <label class="add-text"> Add shareholder</label>
+              <label class="description-text"
+                >Share holder who own more that 10% of the business</label
+              >
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card *ngFor="let user of shareholderList">
+        <nb-card-body>
+          <div class="card-content edit-card-content">
+            <div class="edit-card-content-left">
+              <div class="profile-name">
+                <img *ngIf="user.profilePic" [src]="user.profilePic" />
+                <label>{{ user.altProfileText }}</label>
+              </div>
+              <div class="card-content-details">
+                <label>{{ user.firstName }} {{ " " + user.lastName }}</label>
+                <span class="cardholder-tab" *ngIf="user?.isAccountHolder">
+                  Account Holder
+                </span>
+              </div>
+            </div>
+            <div class="edit-tab">
+              <!-- <span
+                [ngStyle]="{
+                  'background-color': getColorFromStatus(
+                    user.verificationStatus
+                  ),
+                  'pointer-events':
+                    user.verificationStatus === VERIFIED_STATUS ? 'none' : ''
+                }"
+                (click)="_onVerify(user.id)"
+              >
+                {{ user.verificationStatus }}
+              </span> -->
+              <label
+                *ngIf="
+                  user.verificationStatus !== VERIFIED_STATUS && isAutoFlow
+                "
+                (click)="_onUpdateUserDetails(user)"
+                style="color: #0333d2"
+                ><img src="/assets/images/icons/Vector.png" alt="" srcset="" />
+                edit</label
+              >
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <label
+        class="Upload-details ConfirmShareholders-Upload-details"
+        *ngIf="isAutoFlow"
+        >If shareholder is not an individual?
+        <a href="#">Please Contact our onboarding team</a></label
+      >
+    </div>
+    <div class="footer">
+      <div class="footer-content">
+        <button
+          nbButton
+          status="primary"
+          class="btn-next"
+          type="submit"
+          style="display: grid; width: 100%; justify-content: center"
+          (click)="_onNext()"
+        >
+          <!-- [disabled]="!allAreVerified" -->
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

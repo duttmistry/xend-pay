@@ -1,0 +1,25 @@
+<div class="main-container verify-identity-container invitation">
+  <app-title-header
+    [title]="'Invitation link has been sent to ' + email"
+    subTitle="Can continue with the verification of other applicants while we wait for this
+    applicants details"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    disabled_back_button="hide"
+  ></app-title-header>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        (click)="_backToMenu()"
+      >
+        <!-- Back to menu -->
+        Verify User
+      </button>
+    </div>
+  </div>
+</div>

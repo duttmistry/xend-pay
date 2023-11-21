@@ -1,0 +1,122 @@
+.account-holder-container {
+  width: 100%;
+  .form-container {
+    width: 540px;
+    margin: 40px auto;
+    display: block;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+    .input-row {
+      margin-bottom: 16px;
+      label {
+        font-size: 14px;
+        line-height: 16.8px;
+        color: #101828;
+        font-weight: 400;
+        font-family: "Lato", sans-serif;
+        margin-bottom: 8px;
+        width: 100%;
+        display: inline-block;
+      }
+      nb-form-field {
+        input:disabled {
+          background-color: rgba(208, 213, 221, 1) !important;
+          color: #667085 !important;
+          &::placeholder {
+            color: #667085 !important;
+          }
+        }
+      }
+    }
+  }
+  input:disabled {
+    background-color: #80808047 !important;
+    pointer-events: none;
+  }
+  .cls-mobile-container {
+    display: flex;
+    column-gap: 8px;
+    cursor: pointer;
+  }
+  .cls-mobile-number-container {
+    width: 100%;
+  }
+  .error-message {
+    color: red;
+  }
+  .search-field {
+    position: relative;
+    margin-bottom: 15px;
+    .serach-img {
+      position: absolute;
+      right: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      line-height: 40px;
+      cursor: pointer;
+      z-index: 1;
+      color: #03045fc7;
+      left: 12px;
+      width: 20px;
+      height: 20px;
+    }
+    .search-input {
+      border-radius: 2px;
+      border: 1px solid #ccc;
+      height: 50px;
+      padding: 5px;
+      width: 420px;
+      padding-left: 40px !important;
+    }
+  }
+}
+
+.search-field-country {
+  position: relative;
+  margin-bottom: 15px;
+}
+.serach-img-country {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1;
+  color: #03045fc7;
+  left: 7px;
+  width: 20px;
+  height: 20px;
+}
+
+.search-input-country {
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  height: 50px;
+  padding: 5px;
+  width: 420px;
+  padding-left: 30px !important;
+}
+
+///dob
+.dob-field {
+  position: relative;
+  margin-bottom: 15px;
+}
+.dob-img {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1;
+  color: #03045fc7;
+  left: 508px;
+  width: 20px;
+  height: 20px;
+}

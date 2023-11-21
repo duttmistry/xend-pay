@@ -1,0 +1,159 @@
+<div class="main-container">
+  <app-title-header
+    title="Type of account"
+    subTitle="Select an account that best suits your business set up"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="/"
+  ></app-title-header>
+
+  <!-- <div style="display: flex; justify-content: center; margin-top: 20px">
+        <nb-card class="roles" (click)="selectAccount('personal')">
+          <nb-card-header style="position: relative" *ngIf="personalClicked">
+            <nb-badge
+              text="new"
+              status="success"
+              position="top right"
+            ></nb-badge>
+          </nb-card-header>
+          <nb-card-body class="account-selection">
+            <div>
+              <div class="center">
+                <img
+                  src="{{ '/assets/images/icons/person.png' }}"
+                  alt=""
+                  style="width: 50px; height: 50px"
+                />
+              </div>
+              <div class="center">Select Account</div>
+              <h6 class="center text-small">
+                You're self employed or a freelancer and hold complete ownership
+                of your business.
+              </h6>
+            </div>
+          </nb-card-body>
+        </nb-card>
+        <nb-card class="roles" (click)="selectAccount('general')">
+          <nb-card-header style="position: relative" *ngIf="generalClicked">
+            <nb-badge
+              text="new"
+              status="success"
+              position="top right"
+            ></nb-badge>
+          </nb-card-header>
+          <nb-card-body class="account-selection">
+            <div>
+              <div class="center">
+                <img
+                  src="{{ '/assets/images/icons/people.png' }}"
+                  alt=""
+                  style="width: 50px; height: 50px"
+                />
+              </div>
+              <div class="center">Registered Company</div>
+              <h6 class="center text-small">
+                Your company is registered with UK Companies House. You must be
+                a director of the company to open an account
+              </h6>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div> -->
+  <div class="form-content">
+    <form [formGroup]="accountForm">
+      <div
+        style="
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 40px;
+          margin-bottom: 40px;
+        "
+      >
+        <div class="card" style="margin-right: 40px; border-radius: 8px">
+          <input
+            id="personal"
+            type="radio"
+            class="custom-control-input"
+            value="Solo Trader"
+            name="account_type"
+            formControlName="account_type"
+            style="background-color: #f9fafb; padding: 20px 20px 50px"
+          />
+          <label for="personal">
+            <div
+              style="
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                padding-top: 20px;
+                padding-bottom: 30px;
+                height: 100%;
+              "
+            >
+              <img
+                src="{{ '/assets/images/icons/person.png' }}"
+                alt=""
+                style="width: auto; height: 40px"
+              />
+              <div class="company-details">
+                <span class="company-name">Sole Trader</span>
+                <span
+                  >You're self employed or a freelancer and hold complete
+                  ownership of your business.</span
+                >
+              </div>
+            </div>
+          </label>
+        </div>
+        <div class="card" style="border-radius: 8px">
+          <input
+            id="people"
+            type="radio"
+            class="custom-control-input"
+            value="Registered Company"
+            name="account_type"
+            formControlName="account_type"
+            style="background-color: #f9fafb; padding: 20px 20px 50px"
+          />
+
+          <label for="people">
+            <div
+              style="
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: column;
+                padding-top: 20px;
+                padding-bottom: 30px;
+                height: 100%;
+              "
+            >
+              <img
+                src="{{ '/assets/images/icons/people.png' }}"
+                alt=""
+                style="width: auto; height: 40px"
+              />
+              <div class="company-details">
+                <span class="company-name">Registered Company</span>
+                <span
+                  >Your company is registered with UK Companies House. You must
+                  be a director of the company to open an account.</span
+                >
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </form>
+    <button
+      nbButton
+      status="primary"
+      (click)="selectAccount()"
+      class="btn-next"
+      [disabled]="!accountForm.valid"
+    >
+      Next
+    </button>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="main-container">
+  <app-title-header
+    title="Tell us how we can help your business"
+    subTitle="Tick all that apply"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/additional-information/about-your-business"
+  ></app-title-header>
+
+  <!-- path="/account-verification/country-registration" -->
+  <div class="create-account-content business-account">
+    <form
+      [formGroup]="helpYourBusinessForm"
+      style="width: 540px"
+      onsubmit="redirectToNextStep()"
+    >
+      <nb-checkbox
+        status="basic"
+        formControlName="receivePayments"
+        (change)="isOneChecked()"
+        >Receive payments from customers</nb-checkbox
+      >
+      <nb-checkbox
+        status="basic"
+        formControlName="makePurchases"
+        (change)="isOneChecked()"
+        >Make everyday purchases</nb-checkbox
+      >
+      <nb-checkbox
+        status="basic"
+        formControlName="paySuppliers"
+        (change)="isOneChecked()"
+        >Pay suppliers and employees</nb-checkbox
+      >
+      <nb-checkbox
+        status="basic"
+        formControlName="manageCurrencies"
+        (change)="isOneChecked()"
+        >Manage multiple currencies</nb-checkbox
+      >
+      <nb-checkbox
+        status="basic"
+        formControlName="toPaySalaries"
+        (change)="isOneChecked()"
+        >To pay salaries
+      </nb-checkbox>
+      <nb-checkbox
+        status="basic"
+        formControlName="forExpenseManagement"
+        (change)="isOneChecked()"
+        >For expense management</nb-checkbox
+      >
+    </form>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="display: grid; width: 100%; justify-content: center"
+      (click)="redirectToNextStep()"
+      [disabled]="!oneTrue"
+    >
+      Next
+    </button>
+  </div>
+</div>

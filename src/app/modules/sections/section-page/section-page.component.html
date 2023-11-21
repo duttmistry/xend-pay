@@ -1,0 +1,182 @@
+<div class="workflow-wrapper">
+  <div class="sidebar-content">
+    <app-sidebar [showOnlyLogout]="true"> </app-sidebar>
+  </div>
+  <div class="content-right">
+    <app-header
+      [title]="title"
+      subTitle_highlight="{{ subtitle_highlighted }}"
+      subTitle_normal="{{ subtitle_normal }}"
+      subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+      title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+      path="/sections"
+      disabled_back_button="hide"
+    ></app-header>
+
+    <div class="section">
+      <!-- <div class="card-div">
+      <div class="card" (click)="accountRedirection('account_verification')">
+        <input
+        id="account_verification"
+        type="radio"
+        class="custom-control-input"
+        value="people"
+        name="account_type"
+        checked
+        />
+        
+        <label for="account_verification" style="margin-top: 37px">
+          <span>Account Verification</span>
+        </label>
+      </div>
+      <div class="card">
+        <input
+        id="business_details"
+        type="radio"
+        class="custom-control-input"
+          value="people"
+          name="account_type"
+        />
+        
+        <label for="business_details" style="margin-top: 37px">
+          <span>Business Details</span>
+        </label>
+      </div>
+      <div class="card">
+        <input
+        id="business_owner_details"
+        type="radio"
+        class="custom-control-input"
+        value="people"
+        name="account_type"
+        />
+        
+        <label
+        for="business_owner_details"
+        style="margin-top: 10px; display: grid"
+        >
+        <span>Business Owner Details</span>
+        <span style="font-size: small; margin-top: 0px"
+        >Add information about your directors and shareholders</span
+        >
+      </label>
+    </div>
+    <div class="card">
+      <input
+      id="additional_business_details"
+      type="radio"
+      class="custom-control-input"
+      value="people"
+      name="account_type"
+      />
+      
+      <label
+      for="additional_business_details"
+      style="margin-top: 10px; display: grid"
+      >
+      <span>Additional Business Information</span>
+      <span style="font-size: small; margin-top: 0px"
+      >We need supporting documents for identity verification</span
+      >
+    </label>
+  </div>
+</div> -->
+      <!-- <form [formGroup]="activateAccountForm"> -->
+      <div class="card-detail-main">
+        <div class="card-detail-section" *ngFor="let data of dataArr">
+          <div
+            class="card"
+            class="section-div"
+            [ngClass]="
+              (data.status === 'Click to Complete' ||
+                data.status === 'In Progress') &&
+              data.flag === true
+                ? 'section-div '
+                : 'section-div-not-clickable pointer-event-none'
+            "
+            (click)="
+              (data.status === 'Click to Complete' ||
+                data.status === 'In Progress') &&
+              data.flag === true
+                ? accountRedirection(data?.text)
+                : ''
+            "
+          >
+            <div class="section-left">
+              <span
+                [ngClass]="
+                  data.status != 'Completed'
+                    ? 'section-name'
+                    : 'section-disabled'
+                "
+                >{{ data?.title }}</span
+              >
+              <span
+                class="section-description"
+                *ngIf="data.status != 'Completed'"
+                >{{ data?.description }}</span
+              >
+            </div>
+            <div class="data-details">
+              <nb-icon
+                [icon]="data.icon"
+                [status]="data.color"
+                class="data-icon"
+                style="color:{{ data.color }}"
+              >
+              </nb-icon>
+              <span
+                class="data-status"
+                [ngClass]="
+                  data.status === 'Completed'
+                    ? 'section-status'
+                    : data.status === 'In Progress'
+                    ? 'section-status-in-progress'
+                    : ''
+                "
+                >{{ data?.status }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </ng-container> -->
+      <!-- </form> -->
+    </div>
+    <p class="process-term">
+      Need help with the onboarding process?
+      <span (click)="openDialog()">Please contact our onboarding team</span>
+    </p>
+  </div>
+</div>
+<div class="sidebar-logout">
+  <app-sidebar />
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="dialog-card">
+    <!-- <nb-card-header>Template Dialog</nb-card-header> -->
+
+    <div class="dialog-card-heading">
+      <h3>
+        Contact our onbarding team
+      </h3>
+      <h6>
+        Open your inbox to send an email to our team.
+      </h6>
+    </div>
+    <div class="dialog-card-buttons">
+      <button
+        nbButton
+        (click)="ConfirmDialog()"
+        status="primary"
+        class="btn-confirm"
+      >
+        Contact
+      </button>
+      <button nbButton (click)="ref.close()" class="btn-cancel">Go back</button>
+      <!-- <nb-card-footer>
+    </nb-card-footer> -->
+    </div>
+  </nb-card>
+</ng-template>

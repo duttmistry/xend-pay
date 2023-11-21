@@ -1,0 +1,397 @@
+<div class="main-container account-holder-container">
+  <app-title-header
+    [title]="title"
+    [subTitle]="tagLine"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    [path]="backPath"
+  ></app-title-header>
+
+  <form class="form-container" [formGroup]="userDetailsToVerify">
+    <div class="input-row">
+      <label>First and middle name</label>
+      <nb-form-field>
+        <input
+          formControlName="firstName"
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="small"
+          placeholder="First Name"
+        />
+      </nb-form-field>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['firstName']?.touched &&
+            userDetailsToVerifyForm['firstName']?.hasError('required')
+          "
+        >
+          First name is required
+        </label>
+      </div>
+    </div>
+    <div class="input-row">
+      <label>Last name</label>
+      <nb-form-field>
+        <input
+          formControlName="lastName"
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="small"
+          placeholder="Last Name"
+        />
+      </nb-form-field>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['lastName']?.touched &&
+            userDetailsToVerifyForm['lastName']?.hasError('required')
+          "
+        >
+          Last name is required
+        </label>
+      </div>
+    </div>
+    <!-- <div class="input-row">
+      <label>Mobile Number</label>
+      <div class="number-field cls-mobile-container" style="display: flex; column-gap: 8px;">
+        <nb-form-field style="max-width: 125px;">
+          <nb-icon
+            nbPrefix
+            icon="at-outline"
+            [class]="
+              userDetailsToVerifyForm['countryLocation']?.value ? flag_Icon : ''
+            "
+            pack="eva"
+          ></nb-icon>
+          <input
+            #autoInput
+            nbInput
+            type="text"
+            (input)="onChange()"
+            placeholder="Code"
+            class="countrylocation-code"
+            [nbAutocomplete]="auto"
+            formControlName="countryLocation"
+          />
+        </nb-form-field>
+        <div class="cls-mobile-number-container">
+          <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+            <nb-option
+              *ngFor="let option of filteredOptions$ | async"
+              [value]="option.country_code"
+            >
+              <span [innerHtml]="getOptionHtml(option)"></span>
+            </nb-option>
+          </nb-autocomplete>
+          <input
+            type="text"
+            max="10"
+            onKeyPress="if(this.value.length==10) return false;"
+            nbInput
+            fullWidth
+            fieldSize="medium"
+            placeholder="Mobile number"
+            formControlName="mobilenumber"
+            class="Mobile-number"
+          />
+        </div>
+      </div>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['countryLocation']?.touched &&
+            userDetailsToVerifyForm['countryLocation']?.hasError('required') &&
+            !(
+              userDetailsToVerifyForm['mobilenumber']?.touched &&
+              userDetailsToVerifyForm['mobilenumber']?.hasError('required') &&
+              userDetailsToVerifyForm['mobilenumber']?.hasError('pattern')
+            )
+          "
+        >
+          Country code is required
+        </label>
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['mobilenumber']?.touched &&
+            userDetailsToVerifyForm['mobilenumber']?.hasError('required')
+          "
+        >
+          Mobile number is required
+        </label>
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['mobilenumber']?.touched &&
+            !userDetailsToVerifyForm['mobilenumber']?.hasError('required') &&
+            userDetailsToVerifyForm['mobilenumber']?.hasError('pattern')
+          "
+        >
+          Mobile number is invalid
+        </label>
+      </div>
+    </div> -->
+    <div class="input-row">
+      <label>Date of Birth</label>
+      <!-- <nb-form-field>
+        <input
+          fullWidth
+          nbInput
+          [nbDatepicker]="datepicker"
+          class="search-input"
+          placeholder="DD/MM/YYYY"
+          formControlName="dateOfBirth"
+          readonly
+        />
+        <nb-datepicker #datepicker format="dd/MM/yyyy"></nb-datepicker>
+        <nb-icon nbSuffix icon="calendar-outline"></nb-icon>
+      </nb-form-field> -->
+      <div class="dob-field">
+        <p-calendar
+          formControlName="dateOfBirth"
+          dateFormat="dd/mm/yy"
+          placeholder="DD/MM/YYYY"
+          [style]="{
+            'border-radius': '10px',
+            width: '100%'
+          }"
+        ></p-calendar>
+        <img src="/assets/images/icons/dob_icon.png" class="dob-img" />
+      </div>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['dateOfBirth']?.touched &&
+            userDetailsToVerifyForm['dateOfBirth']?.hasError('required')
+          "
+          >Date of birth is required</label
+        >
+      </div>
+    </div>
+    <!-- <div class="input-row">
+      <label>Company Role</label>
+      <nb-form-field>
+        <nb-select
+          fullWidth
+          placeholder="Select position"
+          formControlName="role"
+        >
+          <nb-option *ngFor="let role of companyRoles" [value]="role.key">{{
+            role.value
+          }}</nb-option>
+        </nb-select>
+      </nb-form-field>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['role']?.touched &&
+            userDetailsToVerifyForm['role']?.hasError('required')
+          "
+          >Company Role is required</label
+        >
+      </div>
+    </div> -->
+    <div class="input-row">
+      <label>Country of residence</label>
+      <!-- <nb-select
+          fullWidth
+          placeholder="Select country"
+          formControlName="country"
+        >
+          <nb-option *ngFor="let country of countries" [value]="country.id">{{
+            country.name
+          }}</nb-option>
+        </nb-select> -->
+      <ng-select
+        #select
+        [items]="country_options"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="country"
+        bindLabel="country"
+        bindValue="country"
+        groupBy="country_type"
+        [ngStyle]="{
+          'margin-bottom':
+            userDetailsToVerifyForm['country']?.hasError('required') &&
+            (userDetailsToVerifyForm['country']?.touched ||
+              userDetailsToVerifyForm['country']?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field-country">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img-country"
+            />
+            <input
+              class="search-input-country"
+              type="text"
+              (input)="select.filter(input.value)"
+              #input
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+        <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+          {{ item.country_type }}
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+      </ng-select>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['country']?.touched &&
+            userDetailsToVerifyForm['country']?.hasError('required')
+          "
+          >Country of residence is required</label
+        >
+      </div>
+    </div>
+    <div class="input-row">
+      <label class="form-control-label">Postcode</label>
+      <div class="search-field">
+        <img
+          src="/assets/images/icons/search-icon.png"
+          alt=""
+          class="serach-img"
+        />
+        <input
+          nbInput
+          aria-disabled="true"
+          formControlName="postalCode"
+          class="search-input"
+          type="text"
+          [nbAutocomplete]="autoControl"
+          placeholder="Select Postcode"
+          #input
+          (input)="inputPostcode(input.value)"
+        />
+
+        <nb-autocomplete #autoControl>
+          <nb-option
+            *ngFor="let option of filteredControlOptions$ | async"
+            [value]="option.postalCode"
+            (click)="onPostalcodeSelectionChange(option)"
+          >
+            {{ option.postalCode }}
+          </nb-option>
+        </nb-autocomplete>
+      </div>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['postalCode']?.touched &&
+            userDetailsToVerifyForm['postalCode']?.hasError('required')
+          "
+          >Postcode is required</label
+        >
+      </div>
+    </div>
+    <div class="input-row">
+      <label>Address line 1</label>
+      <nb-form-field>
+        <input
+          formControlName="addressLine1"
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="small"
+          placeholder="Address line 1"
+        />
+      </nb-form-field>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['addressLine1']?.touched &&
+            userDetailsToVerifyForm['addressLine1']?.hasError('required')
+          "
+          >Address Line 1 is required</label
+        >
+      </div>
+    </div>
+    <div class="input-row">
+      <label>Address line 2</label>
+      <nb-form-field>
+        <input
+          formControlName="addressLine2"
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="small"
+          placeholder="Address line 2"
+        />
+      </nb-form-field>
+    </div>
+    <div class="input-row">
+      <label>Town or City</label>
+      <nb-form-field>
+        <input
+          formControlName="city"
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="small"
+          placeholder="Town or City"
+        />
+      </nb-form-field>
+      <div class="error-message">
+        <label
+          *ngIf="
+            userDetailsToVerifyForm['city']?.touched &&
+            userDetailsToVerifyForm['city']?.hasError('required')
+          "
+          >Town or City is required</label
+        >
+      </div>
+    </div>
+  </form>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        [disabled]="!userDetailsToVerify.valid"
+        (click)="_onSubmit()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

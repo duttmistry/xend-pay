@@ -1,0 +1,146 @@
+<div>
+  <div class="profile-content" *ngIf="showOnlyLogout">
+    <!-- <img src="assets/images/logo/logo.png" alt="" class="profile-image" /> -->
+    <h6 style="font-size: 48px">JD</h6>
+  </div>
+  <div class="profile-details" *ngIf="showOnlyLogout">AGR Limited</div>
+  <div class="Application-details">
+    <div class="Application-details-wrapper">
+      <div class="Application-tab active" *ngIf="showOnlyLogout">
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke-width="0.00024000000000000003"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.344"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M21.4498 10.275L11.9998 3.1875L2.5498 10.275L2.9998 11.625H3.7498V20.25H20.2498V11.625H20.9998L21.4498 10.275ZM5.2498 18.75V10.125L11.9998 5.0625L18.7498 10.125V18.75H14.9999V14.3333L14.2499 13.5833H9.74988L8.99988 14.3333V18.75H5.2498ZM10.4999 18.75H13.4999V15.0833H10.4999V18.75Z"
+            ></path>
+          </g>
+        </svg>
+        Application
+      </div>
+      <div class="Application-tab help-tab" *ngIf="showOnlyLogout">
+        <!-- <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          stroke="#000000"
+          stroke-width="0.00024000000000000003"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke="#CCCCCC"
+            stroke-width="1.344"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M21.4498 10.275L11.9998 3.1875L2.5498 10.275L2.9998 11.625H3.7498V20.25H20.2498V11.625H20.9998L21.4498 10.275ZM5.2498 18.75V10.125L11.9998 5.0625L18.7498 10.125V18.75H14.9999V14.3333L14.2499 13.5833H9.74988L8.99988 14.3333V18.75H5.2498ZM10.4999 18.75H13.4999V15.0833H10.4999V18.75Z"
+              fill="#101828"
+            ></path>
+          </g>
+        </svg> -->
+        <!-- <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24px"
+          height="24px"
+          style="color: #667085"
+        >
+          <g data-name="Layer 2">
+            <g data-name="menu-arrow-circle">
+              <rect
+                width="24"
+                height="24"
+                transform="rotate(180 12 12)"
+                opacity="0"
+              />
+              <path
+                d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"
+              />
+              <path
+                d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"
+              />
+              <circle cx="12" cy="17" r="1" />
+            </g>
+          </g>
+        </svg> -->
+        <nb-icon icon="question-mark-circle-outline"></nb-icon>
+        Help
+      </div>
+    </div>
+    <div class="logout-tab" (click)="open()" style="cursor: pointer">
+      <svg
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g
+          id="SVGRepo_tracerCarrier"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></g>
+        <g id="SVGRepo_iconCarrier">
+          <path
+            d="M15 16.5V19C15 20.1046 14.1046 21 13 21H6C4.89543 21 4 20.1046 4 19V5C4 3.89543 4.89543 3 6 3H13C14.1046 3 15 3.89543 15 5V8.0625M11 12H21M21 12L18.5 9.5M21 12L18.5 14.5"
+            stroke="#EC5454"
+            stroke-width="1.704"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </g>
+      </svg>
+      Logout
+    </div>
+    <!-- <div>AGR Limited</div>
+    <div>AGR Limited</div>
+    <div>AGR Limited</div> -->
+  </div>
+  <div></div>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="dialog-card">
+    <!-- <nb-card-header>Template Dialog</nb-card-header> -->
+
+    <div class="dialog-card-heading">
+      <h3>Would you like to Logout</h3>
+      <h6>Continue your registration anytime.</h6>
+    </div>
+    <div class="dialog-card-buttons">
+      <button
+        nbButton
+        (click)="ConfirmDialog()"
+        status="primary"
+        class="btn-confirm"
+      >
+        Confirm
+      </button>
+      <button nbButton (click)="ref.close()" class="btn-cancel">Cancel</button>
+      <!-- <nb-card-footer>
+    </nb-card-footer> -->
+    </div>
+  </nb-card>
+</ng-template>

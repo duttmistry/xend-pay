@@ -1,0 +1,136 @@
+<div class="main-container address-proof">
+  <app-title-header
+    title="Upload proof of address"
+    subTitle="You will need to upload all information required below"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="persons-of-control/account-holder-verify-identity"
+  ></app-title-header>
+  <div class="card-wrapper">
+    <div class="card card-customized">
+      <div class="card-body-container">
+        <div class="card-body-wrapper">
+          <div class="card-body-image">
+            <div class="add-icon" style="font-size: 28px; color: #0f172a">
+              &#x2b;
+            </div>
+          </div>
+          <div class="card-body-details">
+            <h6>Proof of Address</h6>
+            <span *ngIf="!fileDetails">Bank Statement, utility bills </span>
+            <span *ngIf="fileDetails">{{fileName}} </span>
+          </div>
+        </div>
+        <div class="card-body-right">
+        <label
+          for="addressProofupload"
+          class="uploadDocLabel"
+          style="cursor: pointer;"
+          *ngIf="!fileDetails && !isUploading && !errorMessage"
+        >
+          Click to upload documents
+        </label>
+          <label
+          
+            class="uploadDocLabel"
+            *ngIf="!fileDetails && errorMessage"
+          >
+          Upload failed. 
+          </label>
+          <label class="file-errorMessage" *ngIf="!fileDetails && errorMessage" for="addressProofupload">
+            <span> Try again</span>
+          </label>
+          <img
+            *ngIf="!fileDetails && errorMessage"
+            src="/assets/images/icons/error-cross-icon.png"
+            alt="error-icon"
+            style="padding-left: 16px;"
+          />
+        <div style="display: flex; align-items: center; gap: 16px;" *ngIf="isUploading">
+          <label for="addressProofupload" class="uploadDocLabel">
+            Uploading
+          </label>
+          <nb-progress-bar
+            [value]="progressbar"
+            status="primary"
+            size="tiny"
+            style="width: 100px"
+          ></nb-progress-bar>
+          <!-- <img
+        *ngIf="isUploading"
+        src="/assets/images/icons/upload-progress.png"
+        alt="progress-bar"
+        /> -->
+        </div>
+        <label
+          for="addressProofupload"
+          class="uploadDocLabel"
+          *ngIf="fileDetails"
+        >
+          Uploaded
+          <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
+        </label>
+        <img
+        *ngIf="fileDetails"
+        src="/assets/images/icons/delete-icon.png"
+        alt="delete-icon"
+        (click)="_removeSelectedFile()"
+        style="cursor: pointer; padding-left: 24px;"
+      />
+        <input
+          type="file"
+          hidden
+          id="addressProofupload"
+          [formControl]="fileUploadFormControl"
+          (change)="_OnfileUploadChange($event)"
+        /></div>
+
+        <!-- <label
+          class="uploadDocLabel"
+          (click)="_previewFile()"
+          *ngIf="fileDetails"
+          class="cursor-pointer"
+          >{{ fileDetails.name }}</label
+        >
+        <nb-icon
+          icon="close"
+          *ngIf="fileDetails"
+          (click)="_removeSelectedFile()"
+          class="cursor-pointer"
+        ></nb-icon> -->
+      </div>
+
+      <!-- <label
+        class="uploadDocLabel"
+        (click)="_previewFile()"
+        *ngIf="fileDetails"
+        class="cursor-pointer"
+        >{{ fileDetails.name }}</label
+      >
+      <nb-icon
+        icon="close"
+        *ngIf="fileDetails"
+        (click)="_removeSelectedFile()"
+        class="cursor-pointer"
+      ></nb-icon> -->
+    </div>
+  </div>
+  <div class="Upload-details">
+    <label>Not sure what to upload?<a>Please visit our FAQs</a> </label>
+  </div>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        [disabled]="!fileDetails"
+        (click)="_onSubmit()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

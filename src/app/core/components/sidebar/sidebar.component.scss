@@ -1,0 +1,164 @@
+.profile-content {
+  background: #d9d9d9;
+  border-radius: 50%;
+  width: 116px;
+  height: 116px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.profile-image {
+  height: auto;
+  width: 54px;
+}
+.profile-details {
+  font-size: 24px;
+  line-height: 30.17px;
+  font-weight: 600;
+  font-family: "Source Sans 3", sans-serif;
+  color: #101828;
+}
+
+.Application-details {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 300px;
+  @media only screen and (max-width: 1199px) {
+    display: none;
+  }
+  .Application-tab {
+    padding: 12px 32px;
+    background-color: #fff;
+    border-right: 2px solid transparent;
+    width: 100%;
+    font-size: 16px;
+    line-height: 20.11px;
+    font-weight: 600;
+    color: #667085;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    svg {
+      // position: absolute;
+      // left: 32px;
+      fill: #667085;
+      margin-right: 12px;
+    }
+    &.active {
+      background-color: #e6ebfb;
+      border-right: 2px solid #0333d2;
+      color: #101828;
+      svg {
+        fill: #101828;
+      }
+    }
+    &.help-tab {
+      margin-top: 24px;
+      justify-content: flex-start;
+      nb-icon {
+        margin-right: 12px;
+        svg {
+          position: absolute;
+          left: 32px;
+          fill: #667085;
+        }
+        &.active {
+          background-color: #e6ebfb;
+          border-right: 2px solid #0333d2;
+          color: #101828;
+          svg {
+            fill: #101828;
+          }
+        }
+      }
+    }
+  }
+}
+.logout-tab {
+  padding: 14px 32px;
+  background-color: #fff;
+  width: 100%;
+  font-size: 16px;
+  line-height: 20.11px;
+  font-weight: 600;
+  color: #ec5454;
+  text-align: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 195px;
+  svg {
+    position: relative;
+    left: 0;
+    margin-right: 12px;
+  }
+}
+.dialog-card {
+  width: 435px;
+  height: auto ;
+  padding: 16px 24px;
+  background-color: #F9FAFB;
+  border-radius: 10px;
+  margin-bottom: 0;
+  @media only screen and (max-width: 567px) {
+    width: 100%;
+  }
+  .dialog-card-heading {
+    margin-bottom: 35px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    h3 {
+      font-size: 24px;
+      line-height: 30.17px;
+      font-weight: 600;
+      color: #101828;
+      font-family: "Source Sans 3", sans-serif;
+      margin: 0 0 16px;
+    }
+    h6 {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 500;
+      color: #667085;
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+    }
+  }
+  .dialog-card-buttons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    .btn-confirm {
+      font-size: 12px;
+      line-height: 24px;
+      font-weight: 700;
+      padding: 8px;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      width: 100%;
+      background-color: #0090FF;
+      color: #FFFFFF;
+      border: 0;
+      text-transform: capitalize;
+    }
+    button.btn-cancel {
+      font-size: 12px;
+      line-height: 24px;
+      font-weight: 700;
+      color: #0090FF;
+      background-color: #fff;
+      border: 2px solid #0090FF;
+      padding: 6px 8px;
+      border-radius: 10px;
+      width: 100%;
+      font-family: 'Lato', sans-serif;
+      text-transform: capitalize;
+    }
+  }
+}

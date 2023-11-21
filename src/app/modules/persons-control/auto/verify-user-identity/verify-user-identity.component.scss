@@ -1,0 +1,39 @@
+.confirm-identity-form {
+  display: flex;
+  justify-content: center;
+  form {
+    width: 540px;
+    margin: 40px auto;
+    display: block;
+    .input-row {
+      margin-bottom: 16px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      label {
+        font-size: 14px;
+        line-height: 16.8px;
+        font-weight: 400;
+        color: #101828;
+        font-family: "Lato", sans-serif !important;
+        margin-bottom: 8px;
+        width: 100%;
+        display: inline-block;
+      }
+      .number-field {
+        display: flex;
+        column-gap: 8px;
+        nb-form-field {
+          max-width: 125px !important;
+          display: flex;
+          align-items: center;
+        }
+        .cls-mobile-number-container {
+          margin-top: auto;
+          margin-bottom: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

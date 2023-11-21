@@ -1,0 +1,117 @@
+<div class="main-container">
+  <app-title-header
+    title="{{ title }}"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/account-verification/verification"
+  ></app-title-header>
+  <!-- path="/account-verification/create-account" -->
+  <div
+    class="verification-form"
+    style="
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+      margin-bottom: 30px;
+      margin-left: auto;
+      flex-direction: column;
+    "
+  >
+    <div
+      class="verification-form-details"
+      style="width: 540px; margin: 0 auto; display: block"
+    >
+      <span
+        class="code-label"
+        style="
+          width: 100%;
+          display: inline-block;
+          margin-bottom: 8px;
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 500;
+          font-family: 'Lato', sans-serif;
+          color: #667085;
+        "
+        >Enter code</span
+      >
+      <form
+        [formGroup]="verification_form"
+        (ngSubmit)="verifyCode(verification_form)"
+      >
+        <code-input
+          [isCodeHidden]="false"
+          [codeLength]="6"
+          (codeChanged)="onCodeChanged($event)"
+          (codeCompleted)="onCodeCompleted($event)"
+          [class]="
+            (verification_form.get('verificationCode')?.hasError('required') ||
+              verification_form
+                .get('verificationCode')
+                ?.hasError('minlength')) &&
+            (verification_form.get('verificationCode')?.touched ||
+              verification_form.get('verificationCode')?.dirty)
+              ? 'code-input-error'
+              : 'code-input'
+          "
+        >
+          <!-- class="code-input-error" -->
+        </code-input>
+
+        <!-- <input
+        #autoInput
+        nbInput
+        type="number"
+        placeholder="##-##-##"
+        [ngStyle]="{
+          width: '400px',
+        }"
+        formControlName="verificationCode"
+        status="{{
+          verification_form.get('verificationCode')?.hasError('required') &&
+          (verification_form.get('verificationCode')?.touched ||
+            verification_form.get('verificationCode')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+      /> -->
+        <!-- max="6" -->
+        <!-- onKeyPress="if(this.value.length==6) return false;" -->
+        <div
+          *ngIf="
+            (verification_form.get('verificationCode')?.hasError('required') ||
+              verification_form
+                .get('verificationCode')
+                ?.hasError('minlength')) &&
+            (verification_form.get('verificationCode')?.touched ||
+              verification_form.get('verificationCode')?.dirty)
+          "
+          class="error-message"
+          style="
+            margin-top: 8px;
+            font-size: 12px;
+            line-height: 14.4px;
+            font-weight: 600;
+            font-family: 'Lato', sans-serif;
+            color: #e72929;
+          "
+        >
+          Verification code is required
+        </div>
+        <div class="another-code-div">
+          Didn’t receive anything?
+          <span class="another-code-span">Send another code</span>
+        </div>
+        <button
+          nbButton
+          status="primary"
+          type="submit"
+          class="btn-next"
+          [disabled]="!verification_form.valid"
+        >
+          Next
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

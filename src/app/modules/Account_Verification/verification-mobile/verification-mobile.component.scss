@@ -1,0 +1,66 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+//OTP Code
+
+.code-input {
+  --item-spacing: 8px;
+  --item-height: 3em;
+  column-gap: 16px;
+  // --item-border: 1px solid #888888
+  // --item-border-bottom: 2px solid #dddddd;
+  --item-border-has-value: 1px solid #D0D5DD;
+  --item-border-bottom-has-value: 1px solid #D0D5DD;
+  --item-border-focused: 1px solid #D0D5DD;
+  --item-border-bottom-focused: 1px solid #0333D2;
+  --item-shadow-focused: none;
+  --item-border-radius: 10px;
+  display: flex;
+  width: 100%;
+}
+.code-input-error {
+  --item-spacing: 8px;
+  --item-height: 3em;
+  column-gap: 16px;
+  --item-border: 1px solid #E72929;
+  --item-border-bottom: 1px solid #E72929;
+  --item-border-has-value: 1px solid #E72929;
+  --item-border-bottom-has-value: 1px solid #E72929;
+  --item-border-focused: 1px solid #E72929;
+  --item-border-bottom-focused: 1px solid #E72929;
+  --item-shadow-focused: none;
+  --item-border-radius: 10px;
+  display: flex;
+  width: 100%;
+}
+span {
+  font-family: "Source Sans 3", sans-serif;
+}
+.another-code-div {
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  color: #8C8C8C;
+  width: 100%;
+  display: inline-block;
+  margin-top: 16px;
+}
+.another-code-span {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+  font-family: 'Lato', sans-serif;
+  color: #0333D2;
+  cursor: pointer;
+}

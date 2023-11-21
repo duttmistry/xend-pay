@@ -1,0 +1,87 @@
+<div class="main-container proof-of-identity-container">
+  <app-title-header
+    title="Select country of issuing and ID"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="persons-of-control/account-holder-verify-identity"
+  ></app-title-header>
+  <div class="form-container">
+    <form [formGroup]="identityForm">
+      <div class="form-input-row country-id">
+        <label>ID issuing country </label>
+        <ng-select
+          [items]="countries"
+          bindLabel="name"
+          bindValue="name"
+          placeholder="Select Country"
+          formControlName="country"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            <nb-icon
+              icon="at-outline"
+              [class]="item?.flag"
+              pack="eva"
+            ></nb-icon>
+            {{ item.name }}
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <nb-icon
+              icon="at-outline"
+              [class]="item?.flag"
+              pack="eva"
+            ></nb-icon>
+            {{ item.name }}
+          </ng-template>
+        </ng-select>
+        <label
+          class="errorMessage"
+          *ngIf="
+            identityFormDetails['country']?.touched &&
+            identityFormDetails['country']?.hasError('required')
+          "
+        >
+          ID issuing country is required
+        </label>
+      </div>
+
+      <div class="form-input-row">
+        <label>ID type</label>
+        <nb-select
+          fullWidth
+          placeholder="Selet ID type"
+          formControlName="docType"
+        >
+          <nb-option *ngFor="let doc of docsList" [value]="doc.key">{{
+            doc.value
+          }}</nb-option>
+        </nb-select>
+        <label
+          class="errorMessage"
+          *ngIf="
+            identityFormDetails['docType']?.touched &&
+            identityFormDetails['docType']?.hasError('required')
+          "
+        >
+          ID type is required
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        [disabled]="identityForm.invalid"
+        (click)="_onSubmit()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

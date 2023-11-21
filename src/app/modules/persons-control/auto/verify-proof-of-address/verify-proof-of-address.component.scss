@@ -1,0 +1,101 @@
+.card-wrapper{
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  margin: 40px 0;
+  .card-customized {
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    flex-direction: column;
+    .card-body-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      width: 540px;
+      margin: 0 auto;
+      column-gap: 16px;
+      background-color: #F9FAFB;
+      cursor: pointer;
+      border-radius: 10px;
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+        column-gap: 12px;
+      }
+      .card-body-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+          gap: 10px;
+        }
+        .card-body-image {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background-color: #D0D5DD;
+          padding: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .card-body-details {
+          @media only screen and (max-width: 767px) {
+            width: 90%;
+          }
+          h6 {
+            font-size: 16px;
+            line-height: 19.2px;
+            color: #101828;
+            font-weight: 700;
+            font-family: "Lato", sans-serif;
+            margin: 0 0 4px 0;
+          }
+          span {
+            font-size: 12px;
+            line-height: 14.4px;
+            color: #667085;
+            font-weight: 400;
+            font-family: "Lato", sans-serif;
+            margin: 0;
+          }
+        }
+      }
+      .uploadDocLabel {
+        font-size: 12px;
+        line-height: 14.4px;
+        font-weight: 400;
+        color: #667085;
+        font-family: "Lato", sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+    }
+  }
+}
+.Upload-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 540px;
+  margin: 0 auto;
+  @media only screen and (max-width: 767px) {
+    width: 100%;
+  }
+  label {
+    font-size: 12px;
+    line-height: 14.4px;
+    font-weight: 400;
+    font-family: "Lato", sans-serif;
+    color: #667085;
+    a {
+      color: #0090FF;
+      text-decoration: none;
+      padding-left: 2px;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,319 @@
+<div class="main-container">
+  <app-title-header
+    title="Create an account"
+    subTitle="Fill in your information to get started with your account"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/account-verification/country-registration"
+  ></app-title-header>
+  <!-- path="/account-verification/country-registration" -->
+  <div
+    class="create-account-content"
+    style="
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-bottom: 40px;
+    "
+  >
+    <form
+      [formGroup]="createAccountForm"
+      (ngSubmit)="createAccount()"
+      style="width: 540px"
+    >
+      <div>
+        <span class="form-control-label">First name</span>
+        <input
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="medium"
+          placeholder="John"
+          formControlName="firstname"
+          status="{{
+            createAccountForm.get('firstname')?.hasError('required') &&
+            (createAccountForm.get('firstname')?.touched ||
+              createAccountForm.get('firstname')?.dirty)
+              ? 'danger'
+              : 'basic'
+          }}"
+          [ngStyle]="
+            createAccountForm.get('firstname')?.hasError('required') &&
+            (createAccountForm.get('firstname')?.touched ||
+              createAccountForm.get('firstname')?.dirty)
+              ? { 'margin-bottom': '0px' }
+              : { 'margin-bottom': '16px' }
+          "
+        />
+      </div>
+      <div
+        *ngIf="
+          createAccountForm.get('firstname')?.hasError('required') &&
+          (createAccountForm.get('firstname')?.touched ||
+            createAccountForm.get('firstname')?.dirty)
+        "
+        class="error-message"
+      >
+        First name is required.
+      </div>
+      <span class="form-control-label">Middle name (optional)</span>
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        formControlName="middlename"
+        style="margin-bottom: 16px"
+      />
+      <!-- <div
+      *ngIf="
+        (createAccountForm.get('middlename')?.hasError('required') &&
+          createAccountForm.get('middlename')?.touched) ||
+          createAccountForm.get('middlename')?.dirty
+          "
+          class="error-message"
+          >
+          First Name is required.
+        </div> -->
+      <span class="form-control-label">Last name</span>
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        placeholder="Doe"
+        formControlName="lastname"
+        status="{{
+          createAccountForm.get('lastname')?.hasError('required') &&
+          (createAccountForm.get('lastname')?.touched ||
+            createAccountForm.get('lastname')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          createAccountForm.get('lastname')?.hasError('required') &&
+          (createAccountForm.get('lastname')?.touched ||
+            createAccountForm.get('lastname')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          createAccountForm.get('lastname')?.hasError('required') &&
+          (createAccountForm.get('lastname')?.touched ||
+            createAccountForm.get('lastname')?.dirty)
+        "
+        class="error-message"
+      >
+        Last name is required.
+      </div>
+      <span class="form-control-label">Email</span>
+      <input
+        type="email"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        placeholder="john.doe@gmail.com"
+        formControlName="email"
+        status="{{
+          (createAccountForm.get('email')?.hasError('required') ||
+            createAccountForm.get('email')?.hasError('email')) &&
+          (createAccountForm.get('email')?.touched ||
+            createAccountForm.get('email')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          (createAccountForm.get('email')?.hasError('required') ||
+            createAccountForm.get('email')?.hasError('email')) &&
+          (createAccountForm.get('email')?.touched ||
+            createAccountForm.get('email')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          createAccountForm.get('email')?.hasError('required') &&
+          (createAccountForm.get('email')?.touched ||
+            createAccountForm.get('email')?.dirty)
+        "
+        class="error-message"
+      >
+        Email is required.
+      </div>
+      <div
+        *ngIf="createAccountForm.get('email')?.hasError('email')"
+        class="error-message"
+        style="margin-bottom: 16px"
+      >
+        Email is invalid.
+      </div>
+      <span class="form-control-label">Password</span>
+      <input
+        type="password"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        placeholder="Password"
+        formControlName="password"
+        status="{{
+          (createAccountForm.get('password')?.hasError('required') ||
+            createAccountForm.get('password')?.hasError('minlength')) &&
+          (createAccountForm.get('password')?.touched ||
+            createAccountForm.get('password')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          (createAccountForm.get('password')?.hasError('required') ||
+            createAccountForm.get('password')?.hasError('minlength')) &&
+          (createAccountForm.get('password')?.touched ||
+            createAccountForm.get('password')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          createAccountForm.get('password')?.hasError('required') &&
+          (createAccountForm.get('password')?.touched ||
+            createAccountForm.get('password')?.dirty)
+        "
+        class="error-message"
+      >
+        Password is required.
+      </div>
+      <div
+        *ngIf="
+          createAccountForm.get('password')?.hasError('minlength') &&
+          (createAccountForm.get('password')?.touched ||
+            createAccountForm.get('password')?.dirty)
+        "
+        class="error-message"
+        style="margin-bottom: 16px"
+      >
+        Password minimum length is must be 6.
+      </div>
+      <span class="form-control-label">Mobile number</span>
+      <div class="number-field create-account-number" style="display: flex; column-gap: 8px">
+        <nb-form-field style="max-width: 125px">
+          <nb-icon
+            nbPrefix
+            icon="at-outline"
+            [class]="createAccountForm?.value?.countryLocation ? flag_Icon : ''"
+            pack="eva"
+          ></nb-icon>
+          <input
+            #autoInput
+            nbInput
+            type="text"
+            (input)="onChange()"
+            placeholder="Enter value"
+            class="countrylocation-code"
+            [nbAutocomplete]="auto"
+            formControlName="countryLocation"
+            status="{{
+              createAccountForm.get('countryLocation')?.hasError('required') &&
+              (createAccountForm.get('countryLocation')?.touched ||
+                createAccountForm.get('countryLocation')?.dirty)
+                ? 'danger'
+                : 'basic'
+            }}"
+          />
+        </nb-form-field>
+        <div style="margin-top: auto; margin-bottom: auto; width: 100%">
+          <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+            <nb-option
+              *ngFor="let option of filteredOptions$ | async"
+              [value]="option.country_code"
+            >
+              <span [innerHtml]="getOptionHtml(option)"></span>
+              <!-- {{ option }} -->
+            </nb-option>
+          </nb-autocomplete>
+          <input
+            type="text"
+            max="10"
+            onKeyPress="if(this.value.length==10) return false;"
+            nbInput
+            fullWidth
+            fieldSize="medium"
+            placeholder="Mobile number"
+            formControlName="mobilenumber"
+            class="Mobile-number"
+            status="{{
+              (createAccountForm.get('mobilenumber')?.hasError('required') ||
+                createAccountForm.get('mobilenumber')?.hasError('pattern')) &&
+              (createAccountForm.get('mobilenumber')?.touched ||
+                createAccountForm.get('mobilenumber')?.dirty)
+                ? 'danger'
+                : 'basic'
+            }}"
+          />
+        </div>
+      </div>
+      <div
+        *ngIf="
+          createAccountForm.get('mobilenumber')?.hasError('required') &&
+          (createAccountForm.get('mobilenumber')?.touched ||
+            createAccountForm.get('mobilenumber')?.dirty)
+        "
+        class="error-message"
+      >
+        Mobile number is required.
+      </div>
+      <div
+        *ngIf="createAccountForm.get('mobilenumber')?.hasError('pattern')"
+        class="error-message"
+      >
+        Mobile number is invalid.
+      </div>
+      <div
+        *ngIf="
+          createAccountForm.get('countryLocation')?.hasError('required') &&
+          createAccountForm.get('countryLocation')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 15px"
+      >
+        Country code is required.
+      </div>
+      <div>
+        <nb-checkbox
+          formControlName="termsandcoditions"
+          (checkedChange)="checked_termsANdConditions($event)"
+          >By Continuing you accept our <span>Terms and Conditions</span
+          >{{ " " }}and <span>Privacy Policy</span></nb-checkbox
+        >
+      </div>
+      <div
+        *ngIf="
+          createAccountForm.get('termsandcoditions')?.hasError('required') &&
+          (createAccountForm.get('termsandcoditions')?.touched ||
+            createAccountForm.get('termsandcoditions')?.dirty)
+        "
+        class="error-message"
+      >
+        Terms and conditions and privacy policies required.
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="display: grid; width: 100%; justify-content: center"
+      (click)="createAccount()"
+      [disabled]="!createAccountForm.valid"
+    >
+      Next
+    </button>
+  </div>
+</div>

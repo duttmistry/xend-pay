@@ -1,0 +1,88 @@
+<div class="main-container">
+  <app-title-header
+    title="Confirm trading address"
+    subTitle="Is registered address same as the trading address?"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/business-details/confirm-business"
+  ></app-title-header>
+  <div class="company-form-content">
+    <div class="trading-details">
+      <div class="heading">Registered Address</div>
+      <p>
+        <span>
+          {{ businessDetailsData?.business_name }}
+        </span>
+        <span>
+          {{ businessDetailsData?.address_line_1 }}
+        </span>
+        <span>
+          {{ businessDetailsData?.address_line_2 }}
+        </span>
+        <span>
+          {{ businessDetailsData?.postcode }}
+        </span>
+        <span>
+          {{ businessDetailsData?.city }}
+        </span>
+      </p>
+    </div>
+    <div
+      class="trading-details"
+      *ngIf="is_same_address || tradingAddressData?.length > 0"
+    >
+      <div class="heading">Trading Address</div>
+      <p>
+        <span>
+          {{ tradingAddressData[0]?.business_name }}
+        </span>
+        <span>
+          {{ tradingAddressData[0]?.address_line_1 }}
+        </span>
+        <span>
+          {{ tradingAddressData[0]?.address_line_2 }}
+        </span>
+        <span>
+          {{ tradingAddressData[0]?.postcode }}
+        </span>
+        <span>
+          {{ tradingAddressData[0]?.city }}
+        </span>
+      </p>
+    </div>
+    <div class="btn-div">
+      <button
+        nbButton
+        status="primary"
+        (click)="save_as_registerd_address()"
+        class="btn-next"
+        *ngIf="tradingAddressData?.length === 0; else confirm"
+      >
+        <!-- [disabled]="!countryForm.valid" -->
+        Same as registered address
+      </button>
+      <ng-template #confirm>
+        <button
+          nbButton
+          status="primary"
+          (click)="confirm_trading_address()"
+          class="btn-next"
+        >
+          <!-- [disabled]="!countryForm.valid" -->
+          Confirm
+        </button>
+      </ng-template>
+      <button
+        nbButton
+        status="primary"
+        (click)="manual_Trading_address()"
+        class="btn-next manual-btn"
+      >
+        <!-- [disabled]="tradingAddressData?.length !== 0"
+        [ngStyle]="{ cursor: is_same_address ? 'not-allowed' : 'pointer' }" -->
+        <!-- [disabled]="!countryForm.valid" -->
+        Enter trading address manually
+      </button>
+    </div>
+  </div>
+</div>

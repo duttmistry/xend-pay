@@ -1,0 +1,42 @@
+.proof-of-identity-container {
+  .form-container {
+    display: flex;
+    justify-content: center;
+    form {
+      width: 540px;
+      margin: 40px auto;
+      display: block;
+      .form-input-row {
+        margin-bottom: 40px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        label {
+          font-size: 14px;
+          line-height: 16.8px;
+          color: #101828;
+          font-weight: 400;
+          font-family: "Lato", sans-serif;
+          margin-bottom: 8px;
+          width: 100%;
+          display: inline-block;
+        }
+        .ng-select {
+          .ng-select-container {
+            input {
+              background-color: transparent;
+              border-radius: 10px;
+              color: #667085;
+              font-family: "Lato", sans-serif;
+            }
+          }
+          .ng-dropdown-panel {
+            .ng-dropdown-panel-items {
+              padding-top: 16px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}

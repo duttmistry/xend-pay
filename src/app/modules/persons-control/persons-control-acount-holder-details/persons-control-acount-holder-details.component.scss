@@ -1,0 +1,145 @@
+.account-holder-container {
+  .form-container.account-detail-form {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    .account-content {
+      width: 540px;
+      margin: 0 auto;
+      display: block;
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+      }
+      .input-row {
+        margin-bottom: 16px;
+        label {
+          font-size: 14px;
+          line-height: 16.8px;
+          color: #101828;
+          font-weight: 400;
+          font-family: "Lato", sans-serif;
+          margin-bottom: 8px;
+          width: 100%;
+          display: inline-block;
+        }
+        nb-form-field {
+          input:disabled {
+            background-color: rgba(208, 213, 221, 1) !important;
+            color: #667085 !important;
+            &::placeholder {
+              color: #667085 !important;
+            }
+          }
+        }
+        .number-field {
+          nb-form-field {
+            max-width: 8.7rem;
+            .nb-form-field-addon {
+              display: none;
+            }
+          }
+          .cls-mobile-number-container {
+            input:disabled {
+              background-color: rgba(208, 213, 221, 1) !important;
+              color: #667085 !important;
+              &::placeholder {
+                color: #667085 !important;
+              }
+            }
+          }
+        }
+        .date-detail {
+          nb-icon {
+            color: #101828 !important;
+          }
+        }
+      }
+    }
+  }
+  input:disabled {
+    background-color: #80808047 !important;
+    pointer-events: none;
+  }
+  .cls-mobile-container {
+    display: flex;
+    column-gap: 8px;
+    cursor: pointer;
+  }
+  .cls-mobile-number-container {
+    width: 100%;
+  }
+  .error-message {
+    color: red;
+  }
+}
+
+///dob
+.dob-field {
+  position: relative;
+  margin-bottom: 15px;
+}
+.dob-img {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1;
+  color: #0F172A;
+  width: 20px;
+  height: 20px;
+}
+.ng-option-label {
+  position: relative;
+}
+.ng-option-label input {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25px;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25px;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #D0D5DD;
+}
+
+.ng-option-label input:checked ~ .checkmark {
+  background-color: #ECF0F5;
+  border-color: #0090FF;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.ng-option-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.ng-option-label .checkmark:after {
+  left: 4.7px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #0090FF;
+  border-width: 0 1.5px 1.5px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

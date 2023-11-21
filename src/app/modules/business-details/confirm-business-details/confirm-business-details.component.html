@@ -1,0 +1,446 @@
+<div class="main-container">
+  <app-title-header
+    title="Confirm your company details"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/business-details"
+  ></app-title-header>
+  <div
+    class="create-account-content"
+    style="
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-bottom: 40px;
+    "
+  >
+    <form
+      [formGroup]="businessDetailsForm"
+      (ngSubmit)="save_Company()"
+      style="width: 540px"
+    >
+      <div>
+        <span class="form-control-label">Company name</span>
+        <input
+          type="text"
+          nbInput
+          fullWidth
+          [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+          fieldSize="medium"
+          formControlName="company_name"
+          status="{{
+            businessDetailsForm.get('company_name')?.hasError('required') &&
+            (businessDetailsForm.get('company_name')?.touched ||
+              businessDetailsForm.get('company_name')?.dirty)
+              ? 'danger'
+              : 'basic'
+          }}"
+          [ngStyle]="
+            businessDetailsForm.get('company_name')?.hasError('required') &&
+            (businessDetailsForm.get('company_name')?.touched ||
+              businessDetailsForm.get('company_name')?.dirty)
+              ? { 'margin-bottom': '0px' }
+              : { 'margin-bottom': '16px' }
+          "
+        />
+      </div>
+      <div
+        *ngIf="
+          businessDetailsForm.get('company_name')?.hasError('required') &&
+          (businessDetailsForm.get('company_name')?.touched ||
+            businessDetailsForm.get('company_name')?.dirty)
+        "
+        class="error-message"
+      >
+        Company name is required.
+      </div>
+      <div>
+        <span class="form-control-label">Company number</span>
+        <input
+          type="text"
+          nbInput
+          [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+          fullWidth
+          fieldSize="medium"
+          formControlName="company_number"
+          status="{{
+            businessDetailsForm.get('company_number')?.hasError('required') &&
+            (businessDetailsForm.get('company_number')?.touched ||
+              businessDetailsForm.get('company_number')?.dirty)
+              ? 'danger'
+              : 'basic'
+          }}"
+          [ngStyle]="
+            businessDetailsForm.get('company_number')?.hasError('required') &&
+            (businessDetailsForm.get('company_number')?.touched ||
+              businessDetailsForm.get('company_number')?.dirty)
+              ? { 'margin-bottom': '0px' }
+              : { 'margin-bottom': '16px' }
+          "
+        />
+      </div>
+      <div
+        *ngIf="
+          businessDetailsForm.get('company_number')?.hasError('required') &&
+          (businessDetailsForm.get('company_number')?.touched ||
+            businessDetailsForm.get('company_number')?.dirty)
+        "
+        class="error-message"
+      >
+        Company number is required.
+      </div>
+      <div>
+        <span class="form-control-label">Legal entity type</span>
+        <nb-select
+          class="business-type-select"
+          formControlName="business_type"
+          [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+          status="{{
+            businessDetailsForm.get('business_type')?.hasError('required') &&
+            (businessDetailsForm.get('business_type')?.touched ||
+              businessDetailsForm.get('business_type')?.dirty)
+              ? 'danger'
+              : 'basic'
+          }}"
+          [ngStyle]="
+            businessDetailsForm.get('business_type')?.hasError('required') &&
+            (businessDetailsForm.get('business_type')?.touched ||
+              businessDetailsForm.get('business_type')?.dirty)
+              ? {
+                  'margin-bottom': '0px',
+                }
+              : { 'margin-bottom': '16px' }
+          "
+          placeholder="Select entity type"
+        >
+          <!-- [(selected)]="selectedItem" -->
+          <nb-option [value]="item?.id" *ngFor="let item of businessTypeData">{{
+            item?.name
+          }}</nb-option>
+        </nb-select>
+      </div>
+      <div
+        *ngIf="
+          businessDetailsForm.get('business_type')?.hasError('required') &&
+          (businessDetailsForm.get('business_type')?.touched ||
+            businessDetailsForm.get('business_type')?.dirty)
+        "
+        class="error-message"
+      >
+        Legal entity type is required.
+      </div>
+      <!-- <span class="form-control-label">Postcode</span>
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        formControlName="postcode"
+        status="{{
+          businessDetailsForm.get('postcode')?.hasError('required') &&
+          (businessDetailsForm.get('postcode')?.touched ||
+            businessDetailsForm.get('postcode')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('postcode')?.hasError('required') &&
+          (businessDetailsForm.get('postcode')?.touched ||
+            businessDetailsForm.get('postcode')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '15px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('postcode')?.hasError('required') &&
+          (businessDetailsForm.get('postcode')?.touched ||
+            businessDetailsForm.get('postcode')?.dirty)
+        "
+        class="error-message"
+      >
+        Postcode is required.
+      </div> -->
+      <span class="form-control-label">Postcode</span>
+      <!-- <div class="search-field">
+        <img
+        src="/assets/images/icons/search-icon.png"
+        alt=""
+        class="serach-img"
+        />
+        <input
+        class="search-input"
+        type="number"
+        #input
+        maxlength="10"
+        style="width: 100%; line-height: 24px"
+        />
+      </div> -->
+      <!-- (input)="filterCompany($event)" -->
+      <div class="search-field">
+        <img
+          src="/assets/images/icons/search-icon.png"
+          alt=""
+          class="serach-img"
+        />
+        <input
+          nbInput
+          formControlName="postcode"
+          class="search-input"
+          type="text"
+          placeholder="Search postcode"
+          [nbAutocomplete]="autoControl"
+          #input
+          (input)="inputPostcode(input.value)"
+          [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+        />
+
+        <nb-autocomplete #autoControl>
+          <nb-option
+            *ngFor="let option of filteredControlOptions$ | async"
+            [value]="option.postcode"
+            (click)="onSelectionChange(option)"
+          >
+            {{ option.postcode }}
+          </nb-option>
+        </nb-autocomplete>
+      </div>
+
+      <div
+        *ngIf="
+          businessDetailsForm.get('postcode')?.hasError('required') &&
+          (businessDetailsForm.get('postcode')?.touched ||
+            businessDetailsForm.get('postcode')?.dirty)
+        "
+        class="error-message"
+      >
+        Postcode is required.
+      </div>
+      <span class="form-control-label">Address line 1</span>
+      <input
+        type="text"
+        nbInput
+        [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+        fullWidth
+        fieldSize="medium"
+        formControlName="address_line_1"
+        status="{{
+          businessDetailsForm.get('address_line_1')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_1')?.touched ||
+            businessDetailsForm.get('address_line_1')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('address_line_1')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_1')?.touched ||
+            businessDetailsForm.get('address_line_1')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('address_line_1')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_1')?.touched ||
+            businessDetailsForm.get('address_line_1')?.dirty)
+        "
+        class="error-message"
+      >
+        Address line 1 is required.
+      </div>
+      <span class="form-control-label">Address line 2</span>
+      <input
+        type="text"
+        nbInput
+        [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+        fullWidth
+        fieldSize="medium"
+        formControlName="address_line_2"
+        status="{{
+          businessDetailsForm.get('address_line_2')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_2')?.touched ||
+            businessDetailsForm.get('address_line_2')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('address_line_2')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_2')?.touched ||
+            businessDetailsForm.get('address_line_2')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('address_line_2')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_2')?.touched ||
+            businessDetailsForm.get('address_line_2')?.dirty)
+        "
+        class="error-message"
+      >
+        Address line 2 is required.
+      </div>
+      <span class="form-control-label">Town or City</span>
+      <input
+        type="text"
+        nbInput
+        [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+        fullWidth
+        fieldSize="medium"
+        formControlName="city"
+        status="{{
+          businessDetailsForm.get('city')?.hasError('required') &&
+          (businessDetailsForm.get('city')?.touched ||
+            businessDetailsForm.get('city')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('city')?.hasError('required') &&
+          (businessDetailsForm.get('city')?.touched ||
+            businessDetailsForm.get('city')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('city')?.hasError('required') &&
+          (businessDetailsForm.get('city')?.touched ||
+            businessDetailsForm.get('city')?.dirty)
+        "
+        class="error-message"
+      >
+        Town or city is required.
+      </div>
+      <span class="form-control-label">Incorporation Date</span>
+      <!-- *ngIf="id == ''" -->
+      <!-- *ngIf="id == ''" -->
+      <!-- <input
+        type="month"
+        nbInput
+        fullWidth
+        min="2020-08"
+        value="2020-10"
+        fieldSize="medium"
+        formControlName="incorporate_activity"
+        status="{{
+          businessDetailsForm
+            .get('incorporate_activity')
+            ?.hasError('required') &&
+          (businessDetailsForm.get('incorporate_activity')?.touched ||
+            businessDetailsForm.get('incorporate_activity')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm
+            .get('incorporate_activity')
+            ?.hasError('required') &&
+          (businessDetailsForm.get('incorporate_activity')?.touched ||
+            businessDetailsForm.get('incorporate_activity')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      /> -->
+
+      <div
+        class="card flex justify-content-center"
+        [style]="
+          disabledAllFormField
+            ? 'pointer-events: none;margin-bottom: 16px'
+            : 'margin-bottom: 16px'
+        "
+      >
+        <p-calendar
+          formControlName="incorporate_activity"
+          view="month"
+          dateFormat="mm/yy"
+          placeholder="MM/YYYY"
+          [readonlyInput]="true"
+          styleClass="p-datepicker-monthpicker"
+          [style]="{
+            'border-radius': '10px',
+            width: '100%'
+          }"
+        ></p-calendar>
+      </div>
+      <!-- <input
+        nbInput
+        [nbDatepicker]="incorporate_activity"
+        formControlName="incorporate_activity"
+      />
+      <nb-datepicker
+        #incorporate_activity
+        [filter]="filterFn"
+        format="MM/yyyy"
+      ></nb-datepicker> -->
+      <div
+        *ngIf="
+          businessDetailsForm
+            .get('incorporate_activity')
+            ?.hasError('required') &&
+          (businessDetailsForm.get('incorporate_activity')?.touched ||
+            businessDetailsForm.get('incorporate_activity')?.dirty)
+        "
+        class="error-message"
+      >
+        Incorporation date is required.
+      </div>
+      <span class="form-control-label">Business activity (SIC)</span>
+      <!-- *ngIf="id == ''" -->
+      <!-- *ngIf="id == ''" -->
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        [style]="disabledAllFormField ? 'pointer-events: none;' : ''"
+        fieldSize="medium"
+        formControlName="business_activity"
+        status="{{
+          businessDetailsForm.get('business_activity')?.hasError('required') &&
+          (businessDetailsForm.get('business_activity')?.touched ||
+            businessDetailsForm.get('business_activity')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('business_activity')?.hasError('required') &&
+          (businessDetailsForm.get('business_activity')?.touched ||
+            businessDetailsForm.get('business_activity')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '16px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('business_activity')?.hasError('required') &&
+          (businessDetailsForm.get('business_activity')?.touched ||
+            businessDetailsForm.get('business_activity')?.dirty)
+        "
+        class="error-message"
+      >
+        Business activity (SIC) is required.
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="display: grid; width: 100%; justify-content: center"
+      (click)="save_Company()"
+      [disabled]="!businessDetailsForm.valid"
+    >
+      Next
+    </button>
+  </div>
+</div>

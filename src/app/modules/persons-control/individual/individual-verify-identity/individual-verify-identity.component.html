@@ -1,0 +1,40 @@
+<div class="main-container verify-identity-container">
+  <app-title-header
+    title="Verify your identity"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="persons-of-control/confirm-shareholders-verify"
+  ></app-title-header>
+  <div class="card-wrapper">
+    <div class="card card-customized" *ngFor="let section of sections">
+      <div class="card-body-container">
+        <div class="card-body-image">
+          <img
+            [src]="'/assets/images/icons/' + section.icon"
+            alt=""
+            style="width: auto; height: 20px"
+          />
+        </div>
+        <div class="card-body-details">
+          <h6>{{ section.name }}</h6>
+          <span>{{ section.description }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        (click)="_onSubmit()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

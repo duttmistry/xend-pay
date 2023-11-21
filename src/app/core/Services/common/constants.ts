@@ -1,0 +1,14 @@
+export const STORAGE_CONSTANTS = {
+    BUSINESS_DETAILS: 'bd',
+    SAME_AS_REGISTERED_ADDRESS: 's_ra',
+    IS_SAME_REGISTERED_ADDRESS: 'is_ra',
+    TRADING_ADDRESS: 'ta',
+    SECTIONS_DATA: 'sd',
+    KYB_DATA: 'kd',
+    DIRECTORS_LIST: 'dr_l',
+    SHAREHOLDERS_LIST: 'sr_l',
+    ACCOUNT_VERIFICATION_PAGES: 'ac_p',
+    PERSON_OF_CONTROL_PAGES: 'pc_p',
+    INDIVIDUALS_USER_FLOW: 'iu_f',
+    INDIVIDUALS_USER_FILES: 'iu_fi',
+};

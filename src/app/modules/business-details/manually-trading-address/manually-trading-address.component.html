@@ -1,0 +1,230 @@
+<div class="main-container">
+  <app-title-header
+    title="Enter your trading address"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/business-details/confirm-trading"
+  ></app-title-header>
+  <div
+    class="create-account-content"
+    style="
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-bottom: 40px;
+    "
+  >
+    <form
+      [formGroup]="businessDetailsForm"
+      (ngSubmit)="save_Company()"
+      style="width: 540px"
+    >
+      <div>
+        <span class="form-control-label">Country</span>
+        <nb-select
+          class="trading-type-select"
+          formControlName="country"
+          status="{{
+            businessDetailsForm.get('country')?.hasError('required') &&
+            (businessDetailsForm.get('country')?.touched ||
+              businessDetailsForm.get('country')?.dirty)
+              ? 'danger'
+              : 'basic'
+          }}"
+          [ngStyle]="
+            businessDetailsForm.get('country')?.hasError('required') &&
+            (businessDetailsForm.get('country')?.touched ||
+              businessDetailsForm.get('country')?.dirty)
+              ? {
+                  'margin-bottom': '0px',
+                }
+              : { 'margin-bottom': '15px' }
+          "
+          placeholder="Select country"
+        >
+          <!-- [(selected)]="selectedItem" -->
+          <nb-option [value]="item?.id" *ngFor="let item of countryData">{{
+            item?.name
+          }}</nb-option>
+        </nb-select>
+      </div>
+      <div
+        *ngIf="
+          businessDetailsForm.get('country')?.hasError('required') &&
+          (businessDetailsForm.get('country')?.touched ||
+            businessDetailsForm.get('country')?.dirty)
+        "
+        class="error-message"
+      >
+        Country is required.
+      </div>
+      <span class="form-control-label">Postcode</span>
+      <!-- <div class="search-field">
+        <img
+        src="/assets/images/icons/search-icon.png"
+        alt=""
+        class="serach-img"
+        />
+        <input
+        class="search-input"
+        type="number"
+        #input
+        maxlength="10"
+        style="width: 100%; line-height: 24px"
+        />
+      </div> -->
+      <!-- (input)="filterCompany($event)" -->
+      <div class="search-field">
+        <img
+          src="/assets/images/icons/search-icon.png"
+          alt=""
+          class="serach-img"
+        />
+        <input
+          formControlName="postcode"
+          nbInput
+          class="search-input"
+          type="text"
+          placeholder="Search postcode"
+          [nbAutocomplete]="autoControl"
+          #input
+          (input)="inputPostcode(input.value)"
+        />
+
+        <nb-autocomplete #autoControl>
+          <nb-option
+            *ngFor="let option of filteredControlOptions$ | async"
+            [value]="option.postcode"
+            (click)="onSelectionChange(option)"
+          >
+            {{ option.postcode }}
+          </nb-option>
+        </nb-autocomplete>
+      </div>
+
+      <div
+        *ngIf="
+          businessDetailsForm.get('postcode')?.hasError('required') &&
+          (businessDetailsForm.get('postcode')?.touched ||
+            businessDetailsForm.get('postcode')?.dirty)
+        "
+        class="error-message"
+      >
+        Postcode is required.
+      </div>
+      <span class="form-control-label">Address line 1</span>
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        formControlName="address_line_1"
+        status="{{
+          businessDetailsForm.get('address_line_1')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_1')?.touched ||
+            businessDetailsForm.get('address_line_1')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('address_line_1')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_1')?.touched ||
+            businessDetailsForm.get('address_line_1')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '15px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('address_line_1')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_1')?.touched ||
+            businessDetailsForm.get('address_line_1')?.dirty)
+        "
+        class="error-message"
+      >
+        Address line 1 is required.
+      </div>
+      <span class="form-control-label">Address line 2</span>
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        formControlName="address_line_2"
+        status="{{
+          businessDetailsForm.get('address_line_2')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_2')?.touched ||
+            businessDetailsForm.get('address_line_2')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('address_line_2')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_2')?.touched ||
+            businessDetailsForm.get('address_line_2')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '15px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('address_line_2')?.hasError('required') &&
+          (businessDetailsForm.get('address_line_2')?.touched ||
+            businessDetailsForm.get('address_line_2')?.dirty)
+        "
+        class="error-message"
+      >
+        Address line 2 is required.
+      </div>
+      <span class="form-control-label">Town or City</span>
+      <input
+        type="text"
+        nbInput
+        fullWidth
+        fieldSize="medium"
+        formControlName="city"
+        status="{{
+          businessDetailsForm.get('city')?.hasError('required') &&
+          (businessDetailsForm.get('city')?.touched ||
+            businessDetailsForm.get('city')?.dirty)
+            ? 'danger'
+            : 'basic'
+        }}"
+        [ngStyle]="
+          businessDetailsForm.get('city')?.hasError('required') &&
+          (businessDetailsForm.get('city')?.touched ||
+            businessDetailsForm.get('city')?.dirty)
+            ? { 'margin-bottom': '0px' }
+            : { 'margin-bottom': '15px' }
+        "
+      />
+      <div
+        *ngIf="
+          businessDetailsForm.get('city')?.hasError('required') &&
+          (businessDetailsForm.get('city')?.touched ||
+            businessDetailsForm.get('city')?.dirty)
+        "
+        class="error-message"
+      >
+        Town or city is required.
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="display: grid; width: 100%; justify-content: center"
+      (click)="save_Company()"
+      [disabled]="!businessDetailsForm.valid"
+    >
+      Next
+    </button>
+  </div>
+</div>

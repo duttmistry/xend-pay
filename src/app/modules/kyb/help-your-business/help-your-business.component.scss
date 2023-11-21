@@ -1,0 +1,27 @@
+.create-account-content.business-account {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    form {
+      width: 540px;
+      margin: 40px auto;
+      display: block;
+      nb-checkbox {
+        .label {
+          .text {
+            font-size: 16px !important;
+            line-height: 24px !important;
+            color: #344054 !important;
+            font-weight: 500;
+            padding-left: 12px !important;
+          }
+        }
+      }
+    }
+  }
+
+// nb-checkbox.status-basic {
+//     display: inline-block;
+//     width: 100%;
+//     margin:6px 0px !important
+//   }

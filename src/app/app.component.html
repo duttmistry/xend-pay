@@ -1,0 +1,89 @@
+<div>
+  <nb-layout>
+    <nb-layout-header>
+      <img
+        src="assets/images/logo/logo.png"
+        alt=""
+        [ngStyle]="{
+          width: '257px',
+          cursor: 'pointer',
+          'margin-left': !isCloseIcon ? 'auto' : '0px',
+          'margin-right': !isCloseIcon ? 'auto' : '0px'
+        }"
+        (click)="goToHome()"
+      />
+      <div
+        class="close-icon"
+        style="
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background-color: #d9d9d9;
+          display: flex;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+        "
+        *ngIf="isCloseIcon"
+        (click)="openDialog()"
+      >
+        <svg
+          width="30px"
+          height="30px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M10.9393 12L6.9696 15.9697L8.03026 17.0304L12 13.0607L15.9697 17.0304L17.0304 15.9697L13.0607 12L17.0303 8.03039L15.9696 6.96973L12 10.9393L8.03038 6.96973L6.96972 8.03039L10.9393 12Z"
+              fill="#0F172A"
+            ></path>
+          </g>
+        </svg>
+      </div>
+    </nb-layout-header>
+    <nb-layout-column>
+      <div class="workflow-main" style="position: relative">
+        <router-outlet></router-outlet>
+      </div>
+    </nb-layout-column>
+  </nb-layout>
+</div>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card class="dialog-card">
+    <!-- <nb-card-header>Template Dialog</nb-card-header> -->
+
+    <div class="dialog-card-heading">
+      <h3>
+        Are you sure u want to cancel ?
+      </h3>
+      <h6>
+        This action is irreversible as you will have to start from the beginning
+        again
+      </h6>
+    </div>
+    <div class="dialog-card-buttons">
+      <button
+        nbButton
+        (click)="ConfirmDialog()"
+        status="primary"
+        class="btn-confirm"
+      >
+        Confirm
+      </button>
+      <button nbButton (click)="ref.close()" class="btn-cancel">Cancel</button>
+      <!-- <nb-card-footer>
+    </nb-card-footer> -->
+    </div>
+  </nb-card>
+</ng-template>

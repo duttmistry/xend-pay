@@ -1,0 +1,389 @@
+<div class="main-container account-holder-container">
+  <app-title-header
+    title="Account holder’s details"
+    subTitle="Look through each section to confirm user’s details"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="/persons-of-control"
+  ></app-title-header>
+
+  <form
+    class="form-container account-detail-form account-holder-detail account-holder_form-wrapper"
+    [formGroup]="accountHolderDetails"
+  >
+    <div class="account-content">
+      <div class="input-row">
+        <label>First and middle name </label>
+        <nb-form-field>
+          <input
+            formControlName="firstName"
+            type="text"
+            nbInput
+            fullWidth
+            fieldSize="small"
+            placeholder="First Name"
+          />
+        </nb-form-field>
+      </div>
+      <div class="input-row">
+        <label>Last name</label>
+        <nb-form-field>
+          <input
+            formControlName="lastName"
+            type="text"
+            nbInput
+            fullWidth
+            fieldSize="small"
+            placeholder="Last Name"
+          />
+        </nb-form-field>
+      </div>
+      <div class="input-row">
+        <label>Mobile number</label>
+        <div class="number-field cls-mobile-container">
+          <nb-form-field>
+            <nb-icon
+              nbPrefix
+              icon="at-outline"
+              [class]="
+                accountHolderDetails.controls['countryLocation']?.value
+                  ? flag_Icon
+                  : ''
+              "
+              pack="eva"
+            ></nb-icon>
+            <input
+              #autoInput
+              nbInput
+              type="text"
+              (input)="onChange()"
+              placeholder="Code"
+              class="countrylocation-code"
+              [nbAutocomplete]="auto"
+              formControlName="countryLocation"
+            />
+          </nb-form-field>
+          <div class="cls-mobile-number-container">
+            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+              <nb-option
+                *ngFor="let option of filteredOptions$ | async"
+                [value]="option.country_code"
+              >
+                <span [innerHtml]="getOptionHtml(option)"></span>
+              </nb-option>
+            </nb-autocomplete>
+            <input
+              type="text"
+              max="10"
+              onKeyPress="if(this.value.length==10) return false;"
+              nbInput
+              fullWidth
+              fieldSize="medium"
+              placeholder="Mobile number"
+              formControlName="mobilenumber"
+              class="Mobile-number"
+            />
+          </div>
+        </div>
+        <div class="error-message">
+          <label
+            *ngIf="
+              accountHolderDetailsForm['countryLocation']?.touched &&
+              accountHolderDetailsForm['countryLocation']?.hasError(
+                'required'
+              ) &&
+              !(
+                accountHolderDetailsForm['mobilenumber']?.touched &&
+                accountHolderDetailsForm['mobilenumber']?.hasError(
+                  'required'
+                ) &&
+                accountHolderDetailsForm['mobilenumber']?.hasError('pattern')
+              )
+            "
+          >
+            Country code is required
+          </label>
+          <label
+            *ngIf="
+              accountHolderDetailsForm['mobilenumber']?.touched &&
+              accountHolderDetailsForm['mobilenumber']?.hasError('required')
+            "
+          >
+            Mobile number is required
+          </label>
+          <label
+            *ngIf="
+              accountHolderDetailsForm['mobilenumber']?.touched &&
+              !accountHolderDetailsForm['mobilenumber']?.hasError('required') &&
+              accountHolderDetailsForm['mobilenumber']?.hasError('pattern')
+            "
+          >
+            Mobile number is invalid
+          </label>
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Date of Birth</label>
+        <!-- <nb-form-field class="date-detail">
+          <input
+            fullWidth
+            nbInput
+            [nbDatepicker]="datepicker"
+            class="search-input"
+            placeholder="DD/MM/YYYY"
+            formControlName="dateOfBirth"
+            readonly
+          />
+          <nb-datepicker #datepicker format="dd/MM/yyyy"></nb-datepicker>
+          <nb-icon nbSuffix icon="calendar-outline"></nb-icon>
+        </nb-form-field> -->
+        <div class="dob-field" style="position: relative;">
+          <p-calendar
+            formControlName="dateOfBirth"
+            dateFormat="dd/mm/yy"
+            placeholder="DD/MM/YYYY"
+            [style]="{
+              'border-radius': '10px',
+              width: '100%'
+            }"
+            [readonlyInput]="true"
+            [showButtonBar]="true"
+          ></p-calendar>
+          <img src="/assets/images/icons/dob_icon.png" class="dob-img" />
+        </div>
+        <div class="error-message">
+          <label
+            *ngIf="
+              (accountHolderDetailsForm['dateOfBirth']?.touched ||
+                accountHolderDetailsForm['dateOfBirth']?.dirty) &&
+              accountHolderDetailsForm['dateOfBirth']?.hasError('required')
+            "
+            >Date of birth is required</label
+          >
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Company role</label>
+        <!-- <nb-form-field>
+          <nb-select
+            fullWidth
+            placeholder="Select position"
+            formControlName="role"
+          >
+            <nb-option *ngFor="let role of companyRoles" [value]="role.key">
+              <div>
+                <div>
+                  {{ role.value }}
+                </div>
+              </div>
+            </nb-option>
+          </nb-select>
+        </nb-form-field> -->
+        <ng-select
+          [items]="companyRoles"
+          [multiple]="false"
+          bindLabel="value"
+          [closeOnSelect]="true"
+          bindValue="key"
+          formControlName="role"
+          placeholder="Select position"
+          class="account-holder-details-select"
+        >
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-item$="item$"
+            let-index="index"
+          >
+            <div (click)="Checked(item)">
+              <label class="ng-option-label" for="{{ item.key }}"
+                >{{ item.value }}
+                <input
+                  id="{{ item.key }}"
+                  name="role"
+                  type="radio"
+                  [checked]="CheckedItem(item)"
+                />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </ng-template>
+        </ng-select>
+        <div class="error-message">
+          <label
+            *ngIf="
+              accountHolderDetailsForm['role']?.touched &&
+              accountHolderDetailsForm['role']?.hasError('required')
+            "
+            >Company role is required</label
+          >
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Country of residence</label>
+        <!-- <nb-form-field>
+          <nb-select
+            fullWidth
+            placeholder="Select country"
+            formControlName="country"
+          >
+            <nb-option *ngFor="let country of countries" [value]="country.id">{{
+              country.name
+            }}</nb-option>
+          </nb-select>
+        </nb-form-field> -->
+        <ng-select
+          #select
+          [items]="country_options"
+          [searchable]="false"
+          [clearable]="false"
+          [closeOnSelect]="true"
+          formControlName="country"
+          bindLabel="country"
+          bindValue="country"
+          groupBy="country_type"
+          placeholder="Select country"
+          [ngStyle]="{
+            'margin-bottom':
+              accountHolderDetails.get('country')?.hasError('required') &&
+              (accountHolderDetails.get('country')?.touched ||
+                accountHolderDetails.get('country')?.dirty)
+                ? '0px'
+                : '20px'
+          }"
+        >
+          <ng-template ng-header-tmp>
+            <div class="search-field">
+              <img
+                src="/assets/images/icons/search-icon.png"
+                alt=""
+                class="serach-img"
+              />
+              <input
+                class="search-input"
+                type="text"
+                (input)="select.filter(input.value)"
+                #input
+                placeholder="Search"
+                style="width: 100%; line-height: 24px"
+              />
+            </div>
+          </ng-template>
+          <ng-template ng-label-tmp let-item="item">
+            <span
+              class="flag-icon {{ item.flag }}"
+              style="
+                margin-right: 16px;
+                width: 24px;
+                height: 16px;
+                background-size: cover;
+              "
+            ></span>
+            <span>{{ item.country }}</span>
+          </ng-template>
+          <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+            {{ item.country_type }}
+          </ng-template>
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-index="index"
+            let-search="searchTerm"
+          >
+            <span
+              class="flag-icon {{ item.flag }}"
+              style="
+                margin-right: 16px;
+                width: 24px;
+                height: 16px;
+                background-size: cover;
+              "
+            ></span>
+            <span>{{ item.country }}</span>
+          </ng-template>
+        </ng-select>
+        <div class="error-message">
+          <label
+            *ngIf="
+              accountHolderDetailsForm['country']?.touched &&
+              accountHolderDetailsForm['country']?.hasError('required')
+            "
+            >Country of residence is required</label
+          >
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Address line 1</label>
+        <nb-form-field>
+          <input
+            formControlName="addressLine1"
+            type="text"
+            nbInput
+            fullWidth
+            fieldSize="small"
+            placeholder="Address line 1"
+          />
+        </nb-form-field>
+        <div class="error-message">
+          <label
+            *ngIf="
+              accountHolderDetailsForm['addressLine1']?.touched &&
+              accountHolderDetailsForm['addressLine1']?.hasError('required')
+            "
+            >Address Line 1 is required</label
+          >
+        </div>
+      </div>
+      <div class="input-row">
+        <label>Address line 2</label>
+        <nb-form-field>
+          <input
+            formControlName="addressLine2"
+            type="text"
+            nbInput
+            fullWidth
+            fieldSize="small"
+            placeholder="Address line 2"
+          />
+        </nb-form-field>
+      </div>
+      <div class="input-row">
+        <label>Town or City</label>
+        <nb-form-field>
+          <input
+            formControlName="city"
+            type="text"
+            nbInput
+            fullWidth
+            fieldSize="small"
+            placeholder="Town or City"
+          />
+        </nb-form-field>
+        <div class="error-message">
+          <label
+            *ngIf="
+              accountHolderDetailsForm['city']?.touched &&
+              accountHolderDetailsForm['city']?.hasError('required')
+            "
+            >Town or City is required</label
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        [disabled]="!accountHolderDetails.valid"
+        (click)="_onSubmit()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

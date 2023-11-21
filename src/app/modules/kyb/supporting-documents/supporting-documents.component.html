@@ -1,0 +1,65 @@
+<div class="main-container">
+  <app-title-header
+    title="Supporting documentation"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/additional-information/help-your-business"
+  ></app-title-header>
+
+  <!-- path="/account-verification/country-registration" -->
+  <div
+    class="create-account-content supportingDocument-content"
+  >
+    <form
+      [formGroup]="supportingDocumentsForm"
+      onsubmit="redirectToNextStep()"
+    >
+    <div class="card-wrapper">
+      <div class="card-body-container">
+        <div class="card-container" (click)="redirectToUpload()">
+          <div class="card-body-detail">
+            <div class="card-body-image">
+              <nb-icon icon="plus" class="card-icon"></nb-icon>
+            </div>
+            <div class="card-div">
+              <div class="card-body-details">
+                <h6>Business Documents</h6>
+                <span>Bank statements,VAT,Certificate of incorporation</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <nb-icon icon="arrow-ios-forward-outline" style="color: #667085;"></nb-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+      <span class="form-control-label">Portfolio or Website (optional)</span>
+      <nb-form-field>
+        <input
+          type="text"
+          nbInput
+          fullWidth
+          fieldSize="medium"
+          formControlName="portFolio"
+        />
+      </nb-form-field>
+    </form>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="display: grid; width: 100%; justify-content: center"
+      [disabled]="!isAllFileUploaded"
+      (click)="redirectToNextStep()"
+    >
+      Next
+    </button>
+  </div>
+</div>

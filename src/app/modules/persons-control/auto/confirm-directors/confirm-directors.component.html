@@ -1,0 +1,71 @@
+<div class="main-container persons-control-container">
+  <app-title-header
+    title="Confirm Directors"
+    subTitle="Please ensure all directors and their individual informations are correct"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="/persons-of-control"
+  ></app-title-header>
+  <div class="confirm-directors confirm-proprietary">
+    <div class="confirm-directors-card confirm-proprietary-card">
+      <nb-card class="Confirmdirectors-card-wrapper"
+        *ngIf="isAutoFlow"
+      >
+        <nb-card-body>
+          <div class="Add-director-tab">
+            <div class="add-container" (click)="_onAddUser()" style="cursor:pointer;">
+              <div class="card-add-icon">
+                <div class="add-icon">&#x2b;</div>
+              </div>
+              <label class="add-text"> Add Director</label>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card
+        *ngFor="let user of listofDirectors"
+      >
+        <nb-card-body>
+          <div class="card-content edit-card-content">
+            <div class="edit-card-content-left">
+              <div class="profile-name">
+                <img *ngIf="user.profilePic" [src]="user.profilePic" />
+                <label>{{ user.altProfileText ? user.altProfileText : "JD" }}</label>
+              </div>
+              <div class="card-content-details">
+                <label
+                  >{{ user.firstName }} {{ " " + user.lastName }}</label
+                >
+                <span class="cardholder-tab"
+                  *ngIf="user?.isAccountHolder"
+                >
+                  Account Holder
+                </span>
+              </div>
+            </div>
+            <div class="edit-tab" >
+              <label (click)="_onUpdateUserDetails(user)" *ngIf="isAutoFlow" style="color: #0333D2;"
+              ><img src="/assets/images/icons/Vector.png" alt="" srcset=""> 
+                edit</label
+              >
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        (click)="_onNext()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

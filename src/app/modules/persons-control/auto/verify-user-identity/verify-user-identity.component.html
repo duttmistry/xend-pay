@@ -1,0 +1,161 @@
+<div class="main-container verify-identity-container">
+  <app-title-header
+    [title]="title"
+    subTitle="You will need to fill in your information to get started with your account"
+    subtitle_style="color: #667085; font-size: 16px; line-height: 24px; font-weight: 400;font-family: 'Lato', sans-serif;"
+    title_style="color: #101828; font-size: 38px; line-height: 47.77px; font-weight: 700;margin-bottom:12px;"
+    path="/persons-of-control/confirm-shareholders-verify"
+  ></app-title-header>
+  <div class="form-container confirm-identity-form">
+    <form [formGroup]="identtifyVerficationform">
+      <div class="input-row">
+        <label>Email address</label>
+        <nb-form-field>
+          <input
+            formControlName="email"
+            type="text"
+            nbInput
+            fullWidth
+            fieldSize="small"
+            placeholder="john.doe@gmail.com"
+          />
+        </nb-form-field>
+        <div class="error-message">
+          <label
+            *ngIf="
+              identtifyVerficationformDetails['email']?.touched &&
+              identtifyVerficationformDetails['email']?.hasError('required')
+            "
+          >
+            Email is required
+          </label>
+          <label
+            *ngIf="
+              identtifyVerficationformDetails['email']?.touched &&
+              !identtifyVerficationformDetails['email']?.hasError('required') &&
+              identtifyVerficationformDetails['email']?.hasError('email')
+            "
+          >
+            Please provide valid email
+          </label>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <label>Mobile number</label>
+        <div class="number-field cls-mobile-container">
+          <nb-form-field>
+            <nb-icon
+              nbPrefix
+              [class]="
+                identtifyVerficationformDetails['countryLocation']?.value
+                  ? flag_Icon
+                  : ''
+              "
+              pack="eva"
+            ></nb-icon>
+            <input
+              #autoInput
+              nbInput
+              type="text"
+              (input)="onChange()"
+              placeholder="Code"
+              class="countrylocation-code"
+              [nbAutocomplete]="auto"
+              formControlName="countryLocation"
+              status="{{
+                identtifyVerficationformDetails['countryLocation']?.hasError(
+                  'required'
+                ) &&
+                (identtifyVerficationformDetails['countryLocation']?.touched ||
+                  identtifyVerficationformDetails['countryLocation']?.dirty)
+                  ? 'danger'
+                  : 'basic'
+              }}"
+            />
+          </nb-form-field>
+          <div class="cls-mobile-number-container">
+            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+              <nb-option
+                *ngFor="let option of filteredOptions$ | async"
+                [value]="option.country_code"
+              >
+                <span [innerHtml]="getOptionHtml(option)"></span>
+              </nb-option>
+            </nb-autocomplete>
+            <input
+              type="text"
+              max="10"
+              onKeyPress="if(this.value.length==10) return false;"
+              nbInput
+              fullWidth
+              fieldSize="medium"
+              placeholder="mobile number"
+              formControlName="mobilenumber"
+              class="Mobile-number"
+            />
+          </div>
+        </div>
+        <div class="error-message">
+          <label
+            *ngIf="
+              identtifyVerficationformDetails['countryLocation']?.touched &&
+              identtifyVerficationformDetails['countryLocation']?.hasError(
+                'required'
+              ) &&
+              !(
+                identtifyVerficationformDetails['mobilenumber']?.touched &&
+                identtifyVerficationformDetails['mobilenumber']?.hasError(
+                  'required'
+                ) &&
+                identtifyVerficationformDetails['mobilenumber']?.hasError(
+                  'pattern'
+                )
+              )
+            "
+          >
+            Country code is required
+          </label>
+          <label
+            *ngIf="
+              identtifyVerficationformDetails['mobilenumber']?.touched &&
+              identtifyVerficationformDetails['mobilenumber']?.hasError(
+                'required'
+              )
+            "
+          >
+            Mobile number is required
+          </label>
+          <label
+            *ngIf="
+              identtifyVerficationformDetails['mobilenumber']?.touched &&
+              !identtifyVerficationformDetails['mobilenumber']?.hasError(
+                'required'
+              ) &&
+              identtifyVerficationformDetails['mobilenumber']?.hasError(
+                'pattern'
+              )
+            "
+          >
+            Mobile number is invalid
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="footer">
+    <div class="footer-content">
+      <button
+        nbButton
+        status="primary"
+        class="btn-next"
+        type="submit"
+        style="display: grid; width: 100%; justify-content: center"
+        [disabled]="identtifyVerficationform.invalid"
+        (click)="_onSubmit()"
+      >
+        Send Invitation
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,621 @@
+<div class="main-container">
+  <app-title-header
+    title="Tell us a bit more about your business"
+    subTitle="You will need to fill in your information to get started"
+    subtitle_style="color: rgb(102, 112, 133); font-size: 16px; font-weight: 400; line-height: 24px;"
+    title_style="color: #101828; font-size: 38px; font-weight: 700; line-height: 47.77px; margin-bottom: 12px;"
+    path="/"
+  ></app-title-header>
+
+  <!-- path="/account-verification/country-registration" -->
+  <div
+    class="create-account-content"
+    style="
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      margin-left: auto;
+      margin-bottom: 40px;
+    "
+  >
+    <form
+      [formGroup]="aboutYourBusinessForm"
+      (ngSubmit)="next()"
+      style="width: 540px"
+    >
+      <span class="form-control-label">What industry are you in?</span>
+      <ng-select
+        #select
+        [items]="industryOptions"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="industry"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm.get('industry')?.hasError('required') &&
+            (aboutYourBusinessForm.get('industry')?.touched ||
+              aboutYourBusinessForm.get('industry')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="select.filter(input.value)"
+              #input
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span>{{ item }}</span>
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span>{{ item }}</span>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          aboutYourBusinessForm.get('industry')?.hasError('required') &&
+          (aboutYourBusinessForm.get('industry')?.touched ||
+            aboutYourBusinessForm.get('industry')?.dirty)
+        "
+        class="error-message"
+      >
+        Industry is required.
+      </div>
+      <!-- <span class="form-control-label">Incorporation Date</span>
+            <nb-form-field style="max-width:none;">
+              <input nbInput placeholder="MM/YYYY" [nbDatepicker]="dateTimePicker" formControlName="incorporationDate">
+              <nb-datepicker #dateTimePicker format="MM/YYYY"></nb-datepicker>
+              <nb-icon nbSuffix icon="calendar-outline" pack="eva"></nb-icon>
+            </nb-form-field>
+            <div *ngIf="aboutYourBusinessForm.get('incorporationDate')?.hasError('required') && (aboutYourBusinessForm.get('incorporationDate')?.touched || aboutYourBusinessForm.get('incorporationDate')?.dirty)" class="error-message">
+              Incorporation date is required.
+            </div> -->
+
+      <span class="form-control-label">What is your annual turnover?</span>
+      <div class="search-field">
+        <img
+          src="/assets/images/icons/pound.png"
+          alt=""
+          class="serach-img"
+          style="width: 18px; height: 18px"
+        />
+        <input
+          type="text"
+          class="search-input"
+          nbInput
+          fullWidth
+          fieldSize="medium"
+          formControlName="annualTurnOver"
+          status="{{
+            aboutYourBusinessForm.get('annualTurnOver')?.hasError('required') &&
+            (aboutYourBusinessForm.get('annualTurnOver')?.touched ||
+              aboutYourBusinessForm.get('annualTurnOver')?.dirty)
+              ? 'danger'
+              : 'basic'
+          }}"
+        />
+      </div>
+      <!-- <nb-form-field>
+        <nb-icon nbPrefix
+          ><span
+            style="
+              display: inline-block;
+              font-size: 18px;
+              color: #000000;
+              background: #fffafa;
+              border: 1px solid black;
+              border-radius: 56px;
+              padding: 8px 8px;
+            "
+            >£</span
+          ></nb-icon
+        >
+      </nb-form-field> -->
+      <div
+        *ngIf="
+          aboutYourBusinessForm.get('annualTurnOver')?.hasError('required') &&
+          (aboutYourBusinessForm.get('annualTurnOver')?.touched ||
+            aboutYourBusinessForm.get('annualTurnOver')?.dirty)
+        "
+        class="error-message"
+      >
+        Annual turnover is required.
+      </div>
+      <div
+        *ngIf="
+          aboutYourBusinessForm.get('annualTurnOver')?.hasError('pattern') &&
+          (aboutYourBusinessForm.get('annualTurnOver')?.touched ||
+            aboutYourBusinessForm.get('annualTurnOver')?.dirty)
+        "
+        class="error-message"
+      >
+        Annual turnover should be in numbers.
+      </div>
+      <span class="form-control-label"
+        >What countries will you be sending money from?</span
+      >
+
+      <!-- <ng-select
+        #countrySelect
+        [items]="countryOptions"
+        [multiple]="true"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="countriesSendingMoneyFrom"
+        bindLabel="country"
+        bindValue="id"
+        groupBy="country_type"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm
+              .get('countriesSendingMoneyFrom')
+              ?.hasError('required') &&
+            (aboutYourBusinessForm.get('countriesSendingMoneyFrom')?.touched ||
+              aboutYourBusinessForm.get('countriesSendingMoneyFrom')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="countrySelect.filter(countriesSendingMoneyFrom.value)"
+              #countriesSendingMoneyFrom
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+        <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+          {{ item.country_type }}
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+      </ng-select> -->
+      <ng-select
+        #countrySelect
+        [items]="countryOptions_From"
+        [multiple]="true"
+        [searchable]="false"
+        bindLabel="country"
+        bindValue="country"
+        formControlName="countriesSendingMoneyFrom"
+        class="moneycountrySelect"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm
+              .get('countriesSendingMoneyFrom')
+              ?.hasError('required') &&
+            (aboutYourBusinessForm.get('countriesSendingMoneyFrom')?.touched ||
+              aboutYourBusinessForm.get('countriesSendingMoneyFrom')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <!-- <span
+            class="ng-value-label flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span
+            class="ng-value-icon right"
+            aria-hidden="true"
+            (click)="clear(item)"
+            >{{ item.country }}</span
+          > -->
+            <span class="ng-value-label"
+              ><span
+                class="ng-value-label flag-icon {{ item.flag }}"
+                width="20px"
+                height="20px"
+              ></span>
+              {{ item.country }}</span
+            >
+          <nb-icon
+            nbSuffix
+            icon="close-circle"
+            pack="eva"
+            class="ng-value-icon"
+            (click)="clear(item); Checked(item, 'countriesSendingMoneyFrom')"
+            aria-hidden="true"
+          ></nb-icon>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+          <div (click)="Checked(item, 'countriesSendingMoneyFrom')">
+            <label class="ng-option-label" for="{{ index }}">
+              <div class="ng-option-text">
+                <span
+                  class="flag-icon {{ item.flag }}"
+                  style="
+                    margin-right: 16px;
+                    width: 24px;
+                    height: 16px;
+                    background-size: cover;
+                  "
+                ></span>
+                <span>{{ item.country }}</span>
+              </div>
+            <div>
+              <input
+                id="{{ index }}"
+                type="checkbox"
+                [checked]="CheckItems(item, 'countriesSendingMoneyFrom')"
+                name="checkbox"
+              />
+              <span class="checkmark"></span>
+            </div>
+          </label>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          aboutYourBusinessForm
+            .get('countriesSendingMoneyFrom')
+            ?.hasError('required') &&
+          aboutYourBusinessForm.get('countriesSendingMoneyFrom')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 20px"
+      >
+        Country is required.
+      </div>
+      <span class="form-control-label">In what currency?</span>
+
+      <ng-select
+        #currencyFromSelect
+        [items]="currencyOptions"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="inWhatCurrencyFrom"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm
+              .get('inWhatCurrencyFrom')
+              ?.hasError('required') &&
+            (aboutYourBusinessForm.get('inWhatCurrencyFrom')?.touched ||
+              aboutYourBusinessForm.get('inWhatCurrencyFrom')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="currencyFromSelect.filter(currencyFromInput.value)"
+              #currencyFromInput
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span>{{ item }}</span>
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span>{{ item }}</span>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          aboutYourBusinessForm
+            .get('inWhatCurrencyFrom')
+            ?.hasError('required') &&
+          aboutYourBusinessForm.get('inWhatCurrencyFrom')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 20px"
+      >
+        Currency is required.
+      </div>
+
+      <span class="form-control-label"
+        >What countries will you be sending money to?</span
+      >
+      <!-- <ng-select
+        #countrySelectTo
+        [items]="countryOptions_To"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="countriesSendingMoneyTo"
+        bindLabel="country"
+        bindValue="country"
+        groupBy="country_type"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm
+              .get('countriesSendingMoneyTo')
+              ?.hasError('required') &&
+            (aboutYourBusinessForm.get('countriesSendingMoneyTo')?.touched ||
+              aboutYourBusinessForm.get('countriesSendingMoneyTo')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="countrySelectTo.filter(countriesSendingMoneyTo.value)"
+              #countriesSendingMoneyTo
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+        <ng-template ng-optgroup-tmp let-item="item" let-index="index">
+          {{ item.country_type }}
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span
+            class="flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span>{{ item.country }}</span>
+        </ng-template>
+      </ng-select> -->
+      <ng-select
+        #countrySelectTo
+        [items]="countryOptions_To"
+        [multiple]="true"
+        [searchable]="false"
+        bindLabel="country"
+        bindValue="country"
+        class="moneycountrySelect"
+        formControlName="countriesSendingMoneyTo"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm
+              .get('countriesSendingMoneyTo')
+              ?.hasError('required') &&
+            (aboutYourBusinessForm.get('countriesSendingMoneyTo')?.touched ||
+              aboutYourBusinessForm.get('countriesSendingMoneyTo')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <!-- <span
+            class="ng-value-label flag-icon {{ item.flag }}"
+            style="
+              margin-right: 16px;
+              width: 24px;
+              height: 16px;
+              background-size: cover;
+            "
+          ></span>
+          <span
+            class="ng-value-icon right"
+            aria-hidden="true"
+            (click)="clear(item)"
+            >{{ item.country }}</span
+          > -->
+          <span class="ng-value-label"
+            ><span
+              class="ng-value-label flag-icon {{ item.flag }}"
+              width="20px"
+              height="20px"
+            ></span>
+            {{ item.country }}</span
+          >
+          <nb-icon
+            nbSuffix
+            icon="close-circle"
+            pack="eva"
+            class="ng-value-icon"
+            (click)="clear(item); Checked(item, 'countriesSendingMoneyTo')"
+            aria-hidden="true"
+          ></nb-icon>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+          <div (click)="Checked(item, 'countriesSendingMoneyTo')">
+            <label class="ng-option-label" for="{{ index }}">
+              <div class="ng-option-text">
+                <span
+                  class="flag-icon {{ item.flag }}"
+                  style="
+                    margin-right: 16px;
+                    width: 24px;
+                    height: 16px;
+                    background-size: cover;
+                  "
+                ></span>
+                <span>{{ item.country }}</span>
+              </div>
+            <div>
+              <input
+                id="{{ index }}"
+                type="checkbox"
+                [checked]="CheckItems(item, 'countriesSendingMoneyTo')"
+                name="checkbox"
+              />
+              <span class="checkmark"></span>
+            </div>
+          </label>
+          </div>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          aboutYourBusinessForm
+            .get('countriesSendingMoneyTo')
+            ?.hasError('required') &&
+          aboutYourBusinessForm.get('countriesSendingMoneyTo')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 20px"
+      >
+        Country is required.
+      </div>
+      <span class="form-control-label">In what currency?</span>
+
+      <ng-select
+        #currencySelectTo
+        [items]="currencyOptions"
+        [searchable]="false"
+        [clearable]="false"
+        formControlName="inWhatCurrencyTo"
+        [ngStyle]="{
+          'margin-bottom':
+            aboutYourBusinessForm
+              .get('inWhatCurrencyTo')
+              ?.hasError('required') &&
+            (aboutYourBusinessForm.get('inWhatCurrencyTo')?.touched ||
+              aboutYourBusinessForm.get('inWhatCurrencyTo')?.dirty)
+              ? '0px'
+              : '20px'
+        }"
+      >
+        <ng-template ng-header-tmp>
+          <div class="search-field">
+            <img
+              src="/assets/images/icons/search-icon.png"
+              alt=""
+              class="serach-img"
+            />
+            <input
+              class="search-input"
+              type="text"
+              (input)="currencySelectTo.filter(currencyToInput.value)"
+              #currencyToInput
+              placeholder="Search"
+              style="width: 100%; line-height: 24px"
+            />
+          </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+          <span>{{ item }}</span>
+        </ng-template>
+        <ng-template
+          ng-option-tmp
+          let-item="item"
+          let-index="index"
+          let-search="searchTerm"
+        >
+          <span>{{ item }}</span>
+        </ng-template>
+      </ng-select>
+      <div
+        *ngIf="
+          aboutYourBusinessForm.get('inWhatCurrencyTo')?.hasError('required') &&
+          aboutYourBusinessForm.get('inWhatCurrencyTo')?.touched
+        "
+        class="error-message"
+        style="margin-bottom: 20px"
+      >
+        Currency is required.
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">
+  <div class="footer-content">
+    <button
+      nbButton
+      status="primary"
+      class="btn-next"
+      type="submit"
+      style="display: grid; width: 100%; justify-content: center"
+      (click)="next()"
+      disabled="{{ !aboutYourBusinessForm.valid }}"
+    >
+      Next
+    </button>
+  </div>
+</div>

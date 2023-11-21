@@ -1,0 +1,34 @@
+.business-type-select {
+  max-width: 545px !important;
+  width: 100% !important;
+}
+.search-field {
+  position: relative;
+  margin-bottom: 15px;
+}
+.serach-img {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1;
+  color: #03045fc7;
+  left: 24px;
+  width: 20px;
+  height: 20px;
+}
+
+.search-input {
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  height: 50px;
+  padding: 5px;
+  width: 420px;
+  padding-left: 60px !important;
+}
+.data {
+  width: 100% !important;
+}

@@ -1,0 +1,89 @@
+.btn-next {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Source Sans 3", sans-serif;
+  margin-bottom: 16px;
+}
+.btn-next-outline {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Source Sans 3", sans-serif;
+  margin-bottom: 16px;
+}
+.company-form-content {
+  width: 100%;
+  display: flex;
+  margin-left: auto;
+  flex-direction: column;
+  form {
+    width: 540px;
+    height: 555px;
+    overflow: auto;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+  }
+}
+.company-form-content .trading-details {
+  width: 540px;
+  margin: 0 auto 40px;
+  display: block;
+  background-color: #F9FAFB;
+  border-radius: 10px;
+  padding: 16px;
+}
+.company-form-content .trading-details:first-child {
+  margin-top: 40px;
+}
+.company-form-content .trading-details .heading {
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  font-weight: 700;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 16px;
+}
+.company-form-content .trading-details p {
+  margin: 0;
+}
+.company-form-content .trading-details p span {
+  display: block;
+  color: #667085;
+  font-size: 16px;
+  line-height: 19.2px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  font-family: "Lato", sans-serif;
+}
+.company-form-content .trading-details p span:last-child {
+  margin-bottom: 0;
+}
+@media only screen and (max-width: 767px) {
+  .company-form-content .trading-details {
+    width: 100%;
+  }
+}
+.manual-btn {
+  padding: 10px 0 !important;
+  background-color: transparent !important;
+  border: 2px solid #0090ff !important;
+  color: #0090ff !important;
+  margin-bottom: 0;
+}
+// .btn-disabled{
+//   padding: 10px 0 !important;
+//   background-color: transparent !important;
+//   border: 2px solid #0090ff !important;
+//   color: #0090ff !important;
+//   margin-bottom: 0;
+
+// }
